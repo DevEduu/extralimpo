@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  site-html:
+    build:
+      context: .  # Diretório atual, onde está o Dockerfile
+    ports:
+      - "5467:80"  # Mapeia a porta 5467 no host para a porta 80 no container
+    volumes:
+      - ./site:/usr/share/nginx/html  # Mapeia a pasta 'site' para o diretório Nginx
+    restart: always  # Reinicia o container em caso de falhas
