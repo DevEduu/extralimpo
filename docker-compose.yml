@@ -1,11 +1,52 @@
-version: "3.8"
+version: "3.9"
 
 services:
-  site-html:
+  extralimpo-site:
     build:
-      context: .  # Diretório atual, onde está o Dockerfile
+      context: .
+      dockerfile: Dockerfile
+    image: extralimpo-site:latest
+    container_name: extralimpo-site
     ports:
-      - "5467:80"  # Mapeia a porta 5467 no host para a porta 80 no container
+      - "5467:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80/"]
+      interval: 1m
+      timeout: 5s
+      retries: 3
+      start_period: 10s
     volumes:
-      - ./site:/usr/share/nginx/html  # Mapeia a pasta 'site' para o diretório Nginx
-    restart: always  # Reinicia o container em caso de falhas
+      - nginx_logs:/var/log/nginx
+    environment:
+      - TZ=America/Recife
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    networks:
+      - web
+
+  # Opcional: Serviço para monitorar logs
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:0.11.0
+    container_name: nginx-exporter
+    depends_on:
+      - extralimpo-site
+    command:
+      - -nginx.scrape-uri=http://extralimpo-site:80/stub_status
+    restart: unless-stopped
+    networks:
+      - web
+
+volumes:
+  nginx_logs:
+    driver: local
+
+networks:
+  web:
+    driver: bridge
