@@ -1385,7 +1385,7 @@
                     
                     // Visual feedback para botões desativados
                     if (prevBtn.disabled) {
-                        prevBtn.classList.add('opacity-50', 'cursor-not-allowed');x
+                        prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
                     } else {
                         prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
                     }
@@ -1460,10 +1460,10 @@
                         
                         const targetId = this.getAttribute('href');
                         
-                        // Não aplicar scroll suave para o botão de WhatsApp
-                        if (targetId === '#' && this.id === 'whatsapp-button') {
-                            return;
-                        }
+                        // Não aplicar scroll suave para o botão de WhatsApp - comentado para permitir o modal
+                        // if (targetId === '#' && this.id === 'whatsapp-button') {
+                        //     return;
+                        // }
                         
                         const targetElement = document.querySelector(targetId);
                         
@@ -1487,18 +1487,28 @@
                 const modalClose = document.getElementById('modal-close');
                 const btnCancelar = document.getElementById('btn-cancelar');
                 const btnEnviar = document.getElementById('btn-enviar');
+                const whatsappButton = document.getElementById('whatsapp-button');
                 
                 // Função para abrir o modal
                 function openModal(e) {
                     if (e) e.preventDefault();
-                    modalOverlay.classList.add('active');
-                    document.body.style.overflow = 'hidden'; // Impede rolagem quando modal está aberto
+                    if (modalOverlay) {
+                        modalOverlay.classList.add('active');
+                        document.body.style.overflow = 'hidden'; // Impede rolagem quando modal está aberto
+                    }
                 }
                 
                 // Fechar modal
                 function closeModal() {
-                    modalOverlay.classList.remove('active');
-                    document.body.style.overflow = ''; // Restaura rolagem
+                    if (modalOverlay) {
+                        modalOverlay.classList.remove('active');
+                        document.body.style.overflow = ''; // Restaura rolagem
+                    }
+                }
+                
+                // Adicionar evento específico para o botão flutuante do WhatsApp
+                if (whatsappButton) {
+                    whatsappButton.addEventListener('click', openModal);
                 }
                 
                 // Configurar os event listeners para os botões após o carregamento completo da página
@@ -1524,54 +1534,69 @@
                         }
                     });
                     
+                    // Garantir que o botão flutuante do WhatsApp também abra o modal
+                    const whatsappFloatingBtn = document.getElementById('whatsapp-button');
+                    if (whatsappFloatingBtn) {
+                        whatsappFloatingBtn.addEventListener('click', openModal);
+                    }
+                    
                     console.log('Todos os botões de orçamento foram configurados para abrir o modal.');
                 });
                 
                 // Event listeners para botões relacionados ao modal
-                modalClose.addEventListener('click', closeModal);
-                btnCancelar.addEventListener('click', closeModal);
+                if (modalClose) {
+                    modalClose.addEventListener('click', closeModal);
+                }
+                
+                if (btnCancelar) {
+                    btnCancelar.addEventListener('click', closeModal);
+                }
                 
                 // Fechar modal ao clicar fora
-                modalOverlay.addEventListener('click', function(e) {
-                    if (e.target === modalOverlay) {
-                        closeModal();
-                    }
-                });
+                if (modalOverlay) {
+                    modalOverlay.addEventListener('click', function(e) {
+                        if (e.target === modalOverlay) {
+                            closeModal();
+                        }
+                    });
+                }
                 
                 // Enviar mensagem via WhatsApp
-                btnEnviar.addEventListener('click', function() {
-                    const servico = document.getElementById('servico').value;
-                    const endereco = document.getElementById('endereco').value;
-                    const observacoes = document.getElementById('observacoes').value;
-                    
-                    if (!servico) {
-                        alert('Por favor, selecione um serviço');
-                        return;
-                    }
-                    
-                    // Construir a mensagem
-                    let mensagem = `Olá, Extra Limpo! Gostaria de solicitar um orçamento para ${servico}.`;
-                    
-                    if (endereco) {
-                        mensagem += `\nEndereço: ${endereco}`;
-                    }
-                    
-                    if (observacoes) {
-                        mensagem += `\nObservações: ${observacoes}`;
-                    }
-                    
-                    // Mensagem de fechamento
-                    mensagem += `\n\nAguardo retorno. Obrigado!`;
-                    
-                    // Codificar mensagem para URL
-                    const mensagemCodificada = encodeURIComponent(mensagem);
-                    
-                    // Abrir WhatsApp
-                    window.open(`https://wa.me/5579991059924?text=${mensagemCodificada}`, '_blank');
-                    
-                    // Fechar modal
-                    closeModal();
-                });
+                if (btnEnviar) {
+                    btnEnviar.addEventListener('click', function() {
+                        const servico = document.getElementById('servico').value;
+                        const endereco = document.getElementById('endereco').value;
+                        const observacoes = document.getElementById('observacoes').value;
+                        
+                        if (!servico) {
+                            alert('Por favor, selecione um serviço');
+                            return;
+                        }
+                        
+                        // Construir a mensagem
+                        let mensagem = `Olá, Extra Limpo! Gostaria de solicitar um orçamento para ${servico}.`;
+                        
+                        if (endereco) {
+                            mensagem += `\nEndereço: ${endereco}`;
+                        }
+                        
+                        if (observacoes) {
+                            mensagem += `\nObservações: ${observacoes}`;
+                        }
+                        
+                        // Mensagem de fechamento
+                        mensagem += `\n\nAguardo retorno. Obrigado!`;
+                        
+                        // Codificar mensagem para URL
+                        const mensagemCodificada = encodeURIComponent(mensagem);
+                        
+                        // Abrir WhatsApp
+                        window.open(`https://wa.me/5579991059924?text=${mensagemCodificada}`, '_blank');
+                        
+                        // Fechar modal
+                        closeModal();
+                    });
+                }
             });
         </script>
     </main>
