@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="light">
 
 <head>
     <meta charset="UTF-8" />
@@ -35,6 +35,74 @@
     <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#ABDB00"
         data-border-radius="large"></script>
     <style>
+        :root {
+            /* Variáveis de tema claro (padrão) */
+            --color-primary: #ABDB00;
+            --color-primary-dark: #96c100;
+            --color-primary-light: rgba(171, 219, 0, 0.1);
+            --color-background: #f9fafb;
+            --color-card-bg: #ffffff;
+            --color-text-primary: #1f2937;
+            --color-text-secondary: #4b5563;
+            --color-text-muted: #6b7280;
+            --color-border: #e5e7eb;
+            --color-shadow: rgba(0, 0, 0, 0.1);
+            --color-shadow-dark: rgba(0, 0, 0, 0.2);
+            --color-footer-bg: #111827;
+            --color-footer-text: #ffffff;
+            --color-footer-text-muted: #9ca3af;
+        }
+        
+        /* Tema escuro */
+        html.dark {
+            --color-primary: #ABDB00;
+            --color-primary-dark: #caf442;
+            --color-primary-light: rgba(171, 219, 0, 0.15);
+            --color-background: #1a1a1a;
+            --color-card-bg: #2d2d2d;
+            --color-text-primary: #f3f4f6;
+            --color-text-secondary: #d1d5db;
+            --color-text-muted: #9ca3af;
+            --color-border: #4b5563;
+            --color-shadow: rgba(0, 0, 0, 0.5);
+            --color-shadow-dark: rgba(0, 0, 0, 0.7);
+            --color-footer-bg: #111111;
+            --color-footer-text: #f3f4f6;
+            --color-footer-text-muted: #9ca3af;
+        }
+        
+        body {
+            background-color: var(--color-background);
+            color: var(--color-text-primary);
+        }
+        
+        /* Tema para os cards */
+        .theme-card {
+            background-color: var(--color-card-bg);
+            color: var(--color-text-primary);
+            border-color: var(--color-border);
+            box-shadow: 0 1px 3px var(--color-shadow);
+        }
+        
+        .theme-card:hover {
+            box-shadow: 0 10px 15px -3px var(--color-shadow), 0 4px 6px -2px var(--color-shadow);
+        }
+        
+        /* Toggle do tema */
+        .theme-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            border-radius: 9999px;
+            transition: all 0.2s;
+        }
+        
+        .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
         /* Animações personalizadas */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -62,7 +130,7 @@
         
         .card-hover:hover {
             transform: translateY(-8px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 10px 25px -5px var(--color-shadow), 0 10px 10px -5px var(--color-shadow);
         }
 
         /* Melhorias de responsividade */
@@ -100,12 +168,12 @@
         }
         
         .modal-container {
-            background-color: white;
+            background-color: var(--color-card-bg);
             width: 90%;
             max-width: 500px;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 30px var(--color-shadow-dark);
             transform: scale(0.9);
             transition: transform 0.3s ease;
         }
@@ -116,7 +184,7 @@
         
         .modal-header {
             padding: 1rem 1.5rem;
-            background-color: #ABDB00;
+            background-color: var(--color-primary);
             color: white;
             display: flex;
             justify-content: space-between;
@@ -141,6 +209,7 @@
         
         .modal-body {
             padding: 1.5rem;
+            color: var(--color-text-primary);
         }
         
         .form-group {
@@ -151,30 +220,32 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
-            color: #374151;
+            color: var(--color-text-primary);
         }
         
         .form-control {
             width: 100%;
             padding: 0.75rem;
-            border: 1px solid #D1D5DB;
+            border: 1px solid var(--color-border);
+            background-color: var(--color-card-bg);
+            color: var(--color-text-primary);
             border-radius: 0.375rem;
             font-size: 1rem;
             transition: border-color 0.15s ease-in-out;
         }
         
         .form-control:focus {
-            border-color: #ABDB00;
+            border-color: var(--color-primary);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(171, 219, 0, 0.1);
+            box-shadow: 0 0 0 3px var(--color-primary-light);
         }
         
         .modal-footer {
             padding: 1rem 1.5rem;
-            background-color: #F9FAFB;
+            background-color: var(--color-background);
             display: flex;
             justify-content: flex-end;
-            border-top: 1px solid #E5E7EB;
+            border-top: 1px solid var(--color-border);
         }
         
         .btn {
@@ -186,15 +257,15 @@
         }
         
         .btn-primary {
-            background-color: #ABDB00;
+            background-color: var(--color-primary);
             color: white;
             border: none;
         }
         
         .btn-primary:hover {
-            background-color: #96c100;
+            background-color: var(--color-primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px -1px var(--color-shadow);
         }
         
         .btn-secondary {
@@ -207,13 +278,36 @@
         .btn-secondary:hover {
             background-color: #6B7280;
             transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px -1px var(--color-shadow);
         }
         
         .form-text {
             font-size: 0.875rem;
-            color: #6B7280;
+            color: var(--color-text-muted);
             margin-top: 0.25rem;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 15px 30px var(--color-shadow);
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+
+        .input-field:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-primary-light);
+        }
+        
+        /* Animação de transição para o tema */
+        html.transition,
+        html.transition *,
+        html.transition *:before,
+        html.transition *:after {
+            transition: all 0.3s !important;
+            transition-delay: 0 !important;
         }
     </style>
     
@@ -286,7 +380,7 @@
     </script>
 </head>
 
-<body class="font-[Poppins] bg-gray-50">
+<body class="font-[Poppins]">
     <header class="fixed w-full bg-custom shadow-md z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
@@ -304,35 +398,45 @@
                     <a href="#contato" class="text-white hover:text-gray-200 transition-colors text-base font-medium">
                         <i class="fas fa-phone mr-2"></i>Contato
                     </a>
+                    <!-- Botão de alternância de tema -->
+                    <button id="theme-toggle" class="theme-toggle text-white" aria-label="Alternar tema claro/escuro">
+                        <i class="fas fa-moon text-xl"></i>
+                    </button>
                 </div>
-                <button class="md:hidden text-white hover:text-gray-200 transition-colors focus:outline-none" id="mobile-menu-button" aria-label="Menu">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
+                <div class="flex items-center md:hidden">
+                    <!-- Botão de alternância de tema para mobile -->
+                    <button id="theme-toggle-mobile" class="theme-toggle text-white mr-4" aria-label="Alternar tema claro/escuro">
+                        <i class="fas fa-moon text-xl"></i>
+                    </button>
+                    <button class="text-white hover:text-gray-200 transition-colors focus:outline-none" id="mobile-menu-button" aria-label="Menu">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="hidden mobile-menu-items bg-white w-full py-4 px-4 shadow-lg md:hidden">
+        <div class="hidden mobile-menu-items bg-white dark:bg-gray-800 w-full py-4 px-4 shadow-lg md:hidden">
             <div class="flex flex-col space-y-4">
-                <a href="#servicos" class="text-gray-700 hover:text-custom transition-colors font-medium">
+                <a href="#servicos" class="text-gray-700 dark:text-gray-200 hover:text-custom dark:hover:text-custom transition-colors font-medium">
                     <i class="fas fa-tools mr-2"></i>Nossos Serviços
                 </a>
-                <a href="#depoimentos" class="text-gray-700 hover:text-custom transition-colors font-medium">
+                <a href="#depoimentos" class="text-gray-700 dark:text-gray-200 hover:text-custom dark:hover:text-custom transition-colors font-medium">
                     <i class="fas fa-comments mr-2"></i>Depoimentos
                 </a>
-                <a href="#contato" class="text-gray-700 hover:text-custom transition-colors font-medium">
+                <a href="#contato" class="text-gray-700 dark:text-gray-200 hover:text-custom dark:hover:text-custom transition-colors font-medium">
                     <i class="fas fa-phone mr-2"></i>Contato
                 </a>
             </div>
         </div>
     </header>
     <main>
-        <section class="relative bg-gray-50 pt-24 pb-16 md:py-24 hero-section">
+        <section class="relative pt-24 pb-16 md:py-24 hero-section">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center flex flex-col-reverse">
                     <div class="animate-fadeIn">
-                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 text-center lg:text-left">
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-center lg:text-left">
                             Limpeza de Estofados Profissional em Aracaju
                         </h1>
-                        <p class="text-lg sm:text-xl text-gray-600 mb-8 text-center lg:text-left">
+                        <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-8 text-center lg:text-left">
                             Higienização especializada para sofás, cadeiras, poltronas, colchões e bancos de carro com qualidade e eficiência. Atendemos toda Aracaju.
                         </p>
                         <div class="text-center lg:text-left">
@@ -349,50 +453,50 @@
                 </div>
             </div>
         </section>
-        <section class="py-16 bg-white section-padding" id="servicos">
+        <section class="py-16 bg-white dark:bg-gray-900 section-padding" id="servicos">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center text-gray-900 mb-4">Serviços de Limpeza de Estofados em Aracaju</h2>
-                <p class="text-lg text-center text-gray-600 mb-12 max-w-3xl mx-auto">Oferecemos serviços especializados de higienização e limpeza profunda para diversos tipos de estofados. Usando produtos de alta qualidade e técnicas avançadas para resultados impecáveis.</p>
+                <h2 class="text-3xl font-bold text-center mb-4">Serviços de Limpeza de Estofados em Aracaju</h2>
+                <p class="text-lg text-center text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">Oferecemos serviços especializados de higienização e limpeza profunda para diversos tipos de estofados. Usando produtos de alta qualidade e técnicas avançadas para resultados impecáveis.</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
+                    <div class="theme-card p-6 rounded-xl shadow-sm border card-hover">
                         <i class="fas fa-couch text-custom text-3xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Limpeza de Sofás</h3>
-                        <p class="text-gray-600">Removemos manchas, ácaros e sujeiras profundas com técnicas profissionais. Ideal para sofás de tecido, suede, couro e outros materiais.</p>
+                        <p class="text-gray-600 dark:text-gray-300">Removemos manchas, ácaros e sujeiras profundas com técnicas profissionais. Ideal para sofás de tecido, suede, couro e outros materiais.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
+                    <div class="theme-card p-6 rounded-xl shadow-sm border card-hover">
                         <i class="fas fa-chair text-custom text-3xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Limpeza de Cadeiras</h3>
-                        <p class="text-gray-600">Tratamento profissional para renovar suas cadeiras de escritório, jantar ou decorativas. Eliminamos manchas e odores indesejados.</p>
+                        <p class="text-gray-600 dark:text-gray-300">Tratamento profissional para renovar suas cadeiras de escritório, jantar ou decorativas. Eliminamos manchas e odores indesejados.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
+                    <div class="theme-card p-6 rounded-xl shadow-sm border card-hover">
                         <i class="fas fa-car text-custom text-3xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Bancos de Carro</h3>
-                        <p class="text-gray-600">Higienização completa e segura para os bancos do seu veículo. Removemos manchas e odores com equipamentos especializados.</p>
+                        <p class="text-gray-600 dark:text-gray-300">Higienização completa e segura para os bancos do seu veículo. Removemos manchas e odores com equipamentos especializados.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
+                    <div class="theme-card p-6 rounded-xl shadow-sm border card-hover">
                         <i class="fas fa-chair text-custom text-3xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Limpeza de Poltronas</h3>
-                        <p class="text-gray-600">Restauração e limpeza profunda de poltronas e reclináveis. Devolvemos o aspecto de novo para seu móvel.</p>
+                        <p class="text-gray-600 dark:text-gray-300">Restauração e limpeza profunda de poltronas e reclináveis. Devolvemos o aspecto de novo para seu móvel.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
+                    <div class="theme-card p-6 rounded-xl shadow-sm border card-hover">
                         <i class="fas fa-bed text-custom text-3xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Limpeza de Cama Box</h3>
-                        <p class="text-gray-600">Higienização completa da sua cama box.</p>
+                        <p class="text-gray-600 dark:text-gray-300">Higienização completa da sua cama box.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
+                    <div class="theme-card p-6 rounded-xl shadow-sm border card-hover">
                         <i class="fas fa-bed text-custom text-3xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Limpeza de Colchões</h3>
-                        <p class="text-gray-600">Higienização profunda e remoção de ácaros.</p>
+                        <p class="text-gray-600 dark:text-gray-300">Higienização profunda e remoção de ácaros.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
+                    <div class="theme-card p-6 rounded-xl shadow-sm border card-hover">
                         <i class="fas fa-paw text-custom text-3xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Caminha de Pet</h3>
-                        <p class="text-gray-600">Limpeza especializada para caminhas de pets.</p>
+                        <p class="text-gray-600 dark:text-gray-300">Limpeza especializada para caminhas de pets.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
+                    <div class="theme-card p-6 rounded-xl shadow-sm border card-hover">
                         <i class="fas fa-baby text-custom text-3xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Bebê Conforto</h3>
-                        <p class="text-gray-600">Higienização segura para bebê conforto.</p>
+                        <p class="text-gray-600 dark:text-gray-300">Higienização segura para bebê conforto.</p>
                     </div>
                 </div>
             </div>
@@ -538,6 +642,79 @@
                             meu colchão ficou perfeita. 🌟" <span class="text-xs text-gray-400 block mt-2">via WhatsApp</span>
                         </p>
                     </div>
+                    
+                    <!-- Novos depoimentos fictícios -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
+                        <div class="flex items-center mb-4">
+                            <img src="https://ui-avatars.com/api/?name=Fernanda+Cardoso&background=ABDB00&color=fff&size=128&bold=true"
+                                alt="Cliente Fernanda Cardoso - Depoimento sobre limpeza de sofá em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
+                            <div>
+                                <h4 class="font-semibold">Fernanda Cardoso</h4>
+                                <div class="text-custom">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">"Simplesmente maravilhoso! Meu sofá tinha manchas de café de mais de 2 anos que eu já tinha perdido a esperança de remover. Depois da visita da Extra Limpo, parece que comprei um sofá novo! O atendimento foi excepcional e pontual. Super recomendo! 👌" <span class="text-xs text-gray-400 block mt-2">via Google</span></p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
+                        <div class="flex items-center mb-4">
+                            <img src="https://ui-avatars.com/api/?name=Marcelo+Almeida&background=ABDB00&color=fff&size=128&bold=true"
+                                alt="Cliente Marcelo Almeida - Depoimento sobre limpeza de tapete em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
+                            <div>
+                                <h4 class="font-semibold">Marcelo Almeida</h4>
+                                <div class="text-custom">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">"Contratei o serviço para higienizar meus tapetes da sala que estavam com cheiro de pet. O resultado superou minhas expectativas! Além de eliminar completamente o odor, a aparência ficou renovada. O técnico foi muito cuidadoso e explicou todo o processo. Recomendo a todos em Aracaju! 🐾✨" <span class="text-xs text-gray-400 block mt-2">via WhatsApp</span></p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
+                        <div class="flex items-center mb-4">
+                            <img src="https://ui-avatars.com/api/?name=Juliana+Mendes&background=ABDB00&color=fff&size=128&bold=true"
+                                alt="Cliente Juliana Mendes - Depoimento sobre limpeza de cadeiras em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
+                            <div>
+                                <h4 class="font-semibold">Juliana Mendes</h4>
+                                <div class="text-custom">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">"Precisei higienizar as cadeiras da minha sala de jantar para um evento importante. A Extra Limpo foi super ágil e atendeu em 24h. O preço foi justo e o resultado excelente. As cadeiras brancas, que estavam amareladas, voltaram à cor original! Sem dúvidas, vou contratar novamente. 🏆" <span class="text-xs text-gray-400 block mt-2">via Instagram</span></p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
+                        <div class="flex items-center mb-4">
+                            <img src="https://ui-avatars.com/api/?name=Rafael+Nogueira&background=ABDB00&color=fff&size=128&bold=true"
+                                alt="Cliente Rafael Nogueira - Depoimento sobre limpeza de colchão em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
+                            <div>
+                                <h4 class="font-semibold">Rafael Nogueira</h4>
+                                <div class="text-custom">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600">"Tenho problemas de alergia e decidi fazer uma limpeza profunda no colchão. A diferença foi surpreendente! Durmo muito melhor agora, sem crises de espirro. Os profissionais da Extra Limpo são verdadeiros especialistas e usam produtos que não têm cheiro forte. Já indiquei para toda minha família! 🌬️🛏️" <span class="text-xs text-gray-400 block mt-2">via Google</span></p>
+                    </div>
                 </div>
                 <div class="flex justify-center mt-8 space-x-4">
                     <button id="prev-btn" class="bg-custom text-white px-5 py-3 rounded-lg hover:bg-custom/90 transition-colors" aria-label="Depoimento anterior">
@@ -596,6 +773,52 @@
         </section>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
+                // Verificar tema preferido do usuário
+                const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+                const storedTheme = localStorage.getItem('theme');
+                
+                // Aplicar tema salvo ou o preferido pelo sistema
+                if (storedTheme === 'dark' || (!storedTheme && prefersDarkScheme.matches)) {
+                    document.documentElement.classList.add('dark');
+                    updateThemeIcons(true);
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    updateThemeIcons(false);
+                }
+                
+                // Função para alternar o tema
+                function toggleTheme() {
+                    document.documentElement.classList.add('transition');
+                    
+                    const isDark = document.documentElement.classList.toggle('dark');
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                    
+                    updateThemeIcons(isDark);
+                    
+                    // Remover a classe de transição após a conclusão
+                    setTimeout(() => {
+                        document.documentElement.classList.remove('transition');
+                    }, 300);
+                }
+                
+                // Atualizar ícones do botão de tema
+                function updateThemeIcons(isDark) {
+                    const themeToggle = document.getElementById('theme-toggle');
+                    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+                    
+                    if (isDark) {
+                        themeToggle.innerHTML = '<i class="fas fa-sun text-xl"></i>';
+                        themeToggleMobile.innerHTML = '<i class="fas fa-sun text-xl"></i>';
+                    } else {
+                        themeToggle.innerHTML = '<i class="fas fa-moon text-xl"></i>';
+                        themeToggleMobile.innerHTML = '<i class="fas fa-moon text-xl"></i>';
+                    }
+                }
+                
+                // Event listeners para os botões de tema
+                document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+                document.getElementById('theme-toggle-mobile').addEventListener('click', toggleTheme);
+                
                 // Mobile menu toggle
                 const mobileMenuButton = document.getElementById('mobile-menu-button');
                 const mobileMenuItems = document.querySelector('.mobile-menu-items');
@@ -631,9 +854,16 @@
                 
                 let itemsPerSlide = getItemsPerSlide();
                 let currentIndex = 0;
+                const totalItems = items.length;
                 
                 // Show appropriate slides
                 function showSlide(index) {
+                    // Garante que o índice esteja dentro dos limites
+                    if (index < 0) index = 0;
+                    if (index > totalItems - itemsPerSlide) index = totalItems - itemsPerSlide;
+                    
+                    currentIndex = index;
+                    
                     items.forEach((item, i) => {
                         if (i >= index && i < index + itemsPerSlide) {
                             item.style.display = 'block';
@@ -643,20 +873,47 @@
                             item.classList.remove('animate-fadeIn');
                         }
                     });
+                    
+                    // Atualiza estado dos botões
+                    prevBtn.disabled = currentIndex <= 0;
+                    nextBtn.disabled = currentIndex >= totalItems - itemsPerSlide;
+                    
+                    // Visual feedback para botões desativados
+                    if (prevBtn.disabled) {
+                        prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    } else {
+                        prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    }
+                    
+                    if (nextBtn.disabled) {
+                        nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    } else {
+                        nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    }
                 }
                 
                 // Navigation functions
                 function nextSlide() {
-                    currentIndex = (currentIndex + itemsPerSlide) % items.length;
-                    if (currentIndex + itemsPerSlide > items.length) {
-                        currentIndex = 0;
+                    if (currentIndex + itemsPerSlide < totalItems) {
+                        currentIndex += itemsPerSlide;
+                        if (currentIndex + itemsPerSlide > totalItems) {
+                            currentIndex = totalItems - itemsPerSlide;
+                        }
+                        showSlide(currentIndex);
+                    } else {
+                        // Voltar ao início se chegou ao final
+                        showSlide(0);
                     }
-                    showSlide(currentIndex);
                 }
                 
                 function prevSlide() {
-                    currentIndex = (currentIndex - itemsPerSlide + items.length) % items.length;
-                    showSlide(currentIndex);
+                    if (currentIndex - itemsPerSlide >= 0) {
+                        currentIndex -= itemsPerSlide;
+                        showSlide(currentIndex);
+                    } else {
+                        // Voltar ao final se estiver no início
+                        showSlide(Math.max(0, totalItems - itemsPerSlide));
+                    }
                 }
                 
                 // Event listeners
@@ -667,12 +924,12 @@
                 showSlide(0);
                 
                 // Auto-play carousel
-                let interval = setInterval(nextSlide, 5000);
+                let interval = setInterval(nextSlide, 6000);
                 
                 // Pause on hover
                 container.addEventListener('mouseenter', () => clearInterval(interval));
                 container.addEventListener('mouseleave', () => {
-                    interval = setInterval(nextSlide, 5000);
+                    interval = setInterval(nextSlide, 6000);
                 });
                 
                 // Handle resize
@@ -680,7 +937,9 @@
                     const newItemsPerSlide = getItemsPerSlide();
                     if (newItemsPerSlide !== itemsPerSlide) {
                         itemsPerSlide = newItemsPerSlide;
-                        showSlide(0);
+                        // Mantém o slide atual ou ajusta se necessário
+                        const newIndex = Math.min(currentIndex, totalItems - newItemsPerSlide);
+                        showSlide(newIndex);
                     }
                 });
                 
@@ -782,7 +1041,7 @@
             });
         </script>
     </main>
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="bg-gray-900 dark:bg-black text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
                 <div>

@@ -9,12 +9,36 @@ if ! docker info > /dev/null 2>&1; then
   exit 1
 fi
 
+# Verificar e atualizar do repositório Git
+echo "Verificando atualizações do repositório Git..."
+if [ -d ".git" ]; then
+  echo "Repositório Git encontrado. Atualizando código..."
+  git pull
+  if [ $? -ne 0 ]; then
+    echo "⚠️ Aviso: Não foi possível atualizar o código do repositório."
+    echo "Continuar mesmo assim? (s/n)"
+    read resposta
+    if [ "$resposta" != "s" ] && [ "$resposta" != "S" ]; then
+      echo "Deployment cancelado pelo usuário."
+      exit 1
+    fi
+  else
+    echo "✅ Código atualizado com sucesso!"
+  fi
+else
+  echo "⚠️ Diretório .git não encontrado. Pulando a atualização do código."
+fi
+
 # Limpar containers existentes
 if docker ps -a | grep -q "extralimpo-site"; then
   echo "Parando e removendo containers existentes..."
   docker stop extralimpo-site > /dev/null 2>&1
   docker rm extralimpo-site > /dev/null 2>&1
 fi
+
+# Construir nova imagem
+echo "Reconstruindo a imagem do container..."
+docker-compose -f docker-compose-final.yml build
 
 # Subir com docker-compose
 echo "Iniciando container com configuração estável..."
