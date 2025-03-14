@@ -775,7 +775,7 @@
                         </p>
                         <div class="text-center lg:text-left">
                             <a href="#contato"
-                                class="inline-block bg-custom text-white px-6 sm:px-8 py-3 sm:py-4 !rounded-button text-base sm:text-lg font-semibold hover:bg-custom/90 transition-colors transform hover:scale-105 hover:shadow-lg">
+                                class="btn-orcamento inline-block bg-custom text-white px-6 sm:px-8 py-3 sm:py-4 !rounded-button text-base sm:text-lg font-semibold hover:bg-custom/90 transition-colors transform hover:scale-105 hover:shadow-lg">
                                 Solicitar Orçamento
                             </a>
                         </div>
@@ -1100,7 +1100,7 @@
                 <p class="text-xl text-white mb-4">Entre em contato para um orçamento gratuito</p>
                 <p class="text-2xl font-semibold text-white mb-8">+55 79 99105-9924</p>
                 <a href="https://wa.me/5579991059924"
-                    class="inline-block bg-white text-custom px-8 py-4 !rounded-button text-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 hover:shadow-lg animate-pulse">
+                    class="btn-orcamento inline-block bg-white text-custom px-8 py-4 !rounded-button text-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 hover:shadow-lg animate-pulse">
                     <i class="fab fa-whatsapp mr-2 text-xl"></i>Solicitar Orçamento no WhatsApp
                 </a>
             </div>
@@ -1406,19 +1406,21 @@
                     });
                 });
                 
-                // Funcionalidade do modal de orçamento
-                const whatsappButton = document.getElementById('whatsapp-button');
+                // ========== Funcionalidade do modal de orçamento ==========
+                // Esta seção configura todos os botões de "Solicitar Orçamento" para abrir o modal
+                // em vez de redirecionar para o WhatsApp ou para a âncora #contato
+                
                 const modalOverlay = document.getElementById('modal-orcamento');
                 const modalClose = document.getElementById('modal-close');
                 const btnCancelar = document.getElementById('btn-cancelar');
                 const btnEnviar = document.getElementById('btn-enviar');
                 
-                // Abrir modal
-                whatsappButton.addEventListener('click', function(e) {
-                    e.preventDefault();
+                // Função para abrir o modal
+                function openModal(e) {
+                    if (e) e.preventDefault();
                     modalOverlay.classList.add('active');
                     document.body.style.overflow = 'hidden'; // Impede rolagem quando modal está aberto
-                });
+                }
                 
                 // Fechar modal
                 function closeModal() {
@@ -1426,6 +1428,33 @@
                     document.body.style.overflow = ''; // Restaura rolagem
                 }
                 
+                // Configurar os event listeners para os botões após o carregamento completo da página
+                window.addEventListener('load', function() {
+                    // Capturar todos os botões de orçamento usando a classe e adicionar evento para abrir o modal
+                    document.querySelectorAll('.btn-orcamento').forEach(button => {
+                        button.addEventListener('click', openModal);
+                    });
+                    
+                    // Fallback para outras referências que possam existir
+                    document.querySelectorAll('a[href="#contato"], a[href="https://wa.me/5579991059924"]').forEach(button => {
+                        if (!button.classList.contains('btn-orcamento')) {
+                            button.addEventListener('click', openModal);
+                        }
+                    });
+
+                    // Capturar botões pelo texto como último recurso
+                    document.querySelectorAll('a').forEach(link => {
+                        if (!link.classList.contains('btn-orcamento') && 
+                            (link.textContent.includes('Solicitar Orçamento') || 
+                             link.textContent.includes('Orçamento no WhatsApp'))) {
+                            link.addEventListener('click', openModal);
+                        }
+                    });
+                    
+                    console.log('Todos os botões de orçamento foram configurados para abrir o modal.');
+                });
+                
+                // Event listeners para botões relacionados ao modal
                 modalClose.addEventListener('click', closeModal);
                 btnCancelar.addEventListener('click', closeModal);
                 
@@ -1501,7 +1530,7 @@
         </div>
     </footer>
     <a href="#" id="whatsapp-button"
-        class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bg-[#25D366] text-white p-3 sm:p-4 rounded-full shadow-lg hover:bg-[#1da851] transition-all duration-300 transform hover:scale-110 z-50 animate-pulse"
+        class="btn-orcamento fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bg-[#25D366] text-white p-3 sm:p-4 rounded-full shadow-lg hover:bg-[#1da851] transition-all duration-300 transform hover:scale-110 z-50 animate-pulse"
         style="width: 70px; height: 70px; display: flex; align-items: center; justify-content: center;" aria-label="Contato WhatsApp">
         <i class="fab fa-whatsapp text-4xl"></i>
     </a>
