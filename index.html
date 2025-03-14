@@ -603,6 +603,14 @@
       }
     }
     </script>
+
+    <!-- Carregando Leaflet CSS e JS em vez do Google Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+         crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+         crossorigin=""></script>
 </head>
 
 <body class="font-[Poppins]">
@@ -989,6 +997,95 @@
                 </div>
             </div>
         </section>
+        <section class="py-16 bg-gray-50 dark:bg-gray-900 section-padding" id="mapa-atendimento">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-gray-100 mb-6">Mapa Interativo de Atendimento</h2>
+                <p class="text-lg text-center text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Confira nossa área de cobertura e tempo estimado de chegada. Clique em um bairro para ver mais detalhes.
+                </p>
+                
+                <!-- Mapa e Legenda em Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                    <!-- Mapa Principal (ocupa 2/3 em desktop) -->
+                    <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 overflow-hidden">
+                        <div id="mapa-aracaju" class="w-full h-[500px] rounded-lg overflow-hidden relative">
+                            <!-- Mapa será carregado aqui via JavaScript -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-700">
+                                <p class="text-gray-500 dark:text-gray-400">Carregando mapa...</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-center">
+                            <div class="relative">
+                                <input type="text" id="endereco-busca" placeholder="Digite seu endereço ou CEP..." 
+                                       class="pl-10 pr-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 w-full md:w-80 
+                                              bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200">
+                                <div class="absolute left-3 top-2.5 text-gray-400">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <button id="buscar-endereco" class="absolute right-3 top-2 text-custom hover:text-custom-dark">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Legenda e Informações (ocupa 1/3 em desktop) -->
+                    <div class="theme-card p-6 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-4">Tempos de Atendimento</h3>
+                        <div class="space-y-4">
+                            <!-- Zona Prioritária -->
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 rounded-full bg-green-500 mr-3"></div>
+                                <div>
+                                    <p class="font-medium">Zona Prioritária</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">Chegada em até 2 horas</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Zona Padrão -->
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 rounded-full bg-blue-500 mr-3"></div>
+                                <div>
+                                    <p class="font-medium">Zona Padrão</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">Chegada em até 4 horas</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Zona Estendida -->
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 rounded-full bg-yellow-500 mr-3"></div>
+                                <div>
+                                    <p class="font-medium">Zona Estendida</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">Chegada em até 6 horas</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Região Metropolitana -->
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 rounded-full bg-orange-500 mr-3"></div>
+                                <div>
+                                    <p class="font-medium">Região Metropolitana</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">Agendamento prévio</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Informações de Localização Selecionada -->
+                        <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                            <h4 class="font-medium mb-2">Localização Selecionada</h4>
+                            <div id="info-local" class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                                <p class="text-gray-500 dark:text-gray-400 text-sm italic">Clique em um bairro no mapa ou busque seu endereço para ver detalhes</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Botão de Orçamento -->
+                        <a href="#contato" class="mt-6 block text-center bg-custom text-white dark:text-black py-3 px-4 rounded-lg hover:bg-custom-dark transition-colors">
+                            <i class="fas fa-calendar-check mr-2"></i>Agendar Atendimento
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section id="contato" class="py-16 bg-custom section-padding">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="text-3xl font-bold text-white mb-6">Agende Sua Limpeza de Estofados em Aracaju</h2>
@@ -1308,6 +1405,480 @@
                     closeModal();
                 });
             });
+        </script>
+        <script>
+            // Dados dos bairros de Aracaju e seus tempos de atendimento
+            const bairrosAracaju = [
+                { 
+                    nome: "Atalaia", 
+                    coordenadas: { lat: -10.9878, lng: -37.0451 }, 
+                    zona: "prioritaria", 
+                    tempoChegada: "Até 2 horas", 
+                    corBorda: "#22c55e", 
+                    corPreenchimento: "rgba(34, 197, 94, 0.3)"
+                },
+                { 
+                    nome: "Coroa do Meio", 
+                    coordenadas: { lat: -10.9940, lng: -37.0528 }, 
+                    zona: "prioritaria", 
+                    tempoChegada: "Até 2 horas", 
+                    corBorda: "#22c55e", 
+                    corPreenchimento: "rgba(34, 197, 94, 0.3)"
+                },
+                { 
+                    nome: "Jardins", 
+                    coordenadas: { lat: -10.9438, lng: -37.0573 }, 
+                    zona: "prioritaria", 
+                    tempoChegada: "Até 2 horas", 
+                    corBorda: "#22c55e", 
+                    corPreenchimento: "rgba(34, 197, 94, 0.3)"
+                },
+                { 
+                    nome: "Grageru", 
+                    coordenadas: { lat: -10.9259, lng: -37.0577 }, 
+                    zona: "padrao", 
+                    tempoChegada: "Até 4 horas", 
+                    corBorda: "#3b82f6", 
+                    corPreenchimento: "rgba(59, 130, 246, 0.3)"
+                },
+                { 
+                    nome: "13 de Julho", 
+                    coordenadas: { lat: -10.9370, lng: -37.0500 }, 
+                    zona: "prioritaria", 
+                    tempoChegada: "Até 2 horas", 
+                    corBorda: "#22c55e", 
+                    corPreenchimento: "rgba(34, 197, 94, 0.3)"
+                },
+                { 
+                    nome: "Farolândia", 
+                    coordenadas: { lat: -10.9686, lng: -37.0706 }, 
+                    zona: "padrao", 
+                    tempoChegada: "Até 4 horas", 
+                    corBorda: "#3b82f6", 
+                    corPreenchimento: "rgba(59, 130, 246, 0.3)"
+                },
+                { 
+                    nome: "Salgado Filho", 
+                    coordenadas: { lat: -10.9169, lng: -37.0626 }, 
+                    zona: "padrao", 
+                    tempoChegada: "Até 4 horas", 
+                    corBorda: "#3b82f6", 
+                    corPreenchimento: "rgba(59, 130, 246, 0.3)"
+                },
+                { 
+                    nome: "Zona de Expansão", 
+                    coordenadas: { lat: -11.0605, lng: -37.1224 }, 
+                    zona: "estendida", 
+                    tempoChegada: "Até 6 horas", 
+                    corBorda: "#eab308", 
+                    corPreenchimento: "rgba(234, 179, 8, 0.3)"
+                },
+                { 
+                    nome: "Centro", 
+                    coordenadas: { lat: -10.9161, lng: -37.0521 }, 
+                    zona: "padrao", 
+                    tempoChegada: "Até 4 horas", 
+                    corBorda: "#3b82f6", 
+                    corPreenchimento: "rgba(59, 130, 246, 0.3)"
+                },
+                { 
+                    nome: "Inácio Barbosa", 
+                    coordenadas: { lat: -10.9496, lng: -37.0739 }, 
+                    zona: "padrao", 
+                    tempoChegada: "Até 4 horas", 
+                    corBorda: "#3b82f6", 
+                    corPreenchimento: "rgba(59, 130, 246, 0.3)"
+                },
+                { 
+                    nome: "Jabotiana", 
+                    coordenadas: { lat: -10.9349, lng: -37.0978 }, 
+                    zona: "estendida", 
+                    tempoChegada: "Até 6 horas", 
+                    corBorda: "#eab308", 
+                    corPreenchimento: "rgba(234, 179, 8, 0.3)"
+                },
+                { 
+                    nome: "São Conrado", 
+                    coordenadas: { lat: -10.9774, lng: -37.0730 }, 
+                    zona: "estendida", 
+                    tempoChegada: "Até 6 horas", 
+                    corBorda: "#eab308", 
+                    corPreenchimento: "rgba(234, 179, 8, 0.3)"
+                },
+                { 
+                    nome: "Barra dos Coqueiros", 
+                    coordenadas: { lat: -10.8506, lng: -36.9017 }, 
+                    zona: "metropolitana", 
+                    tempoChegada: "Agendamento prévio", 
+                    corBorda: "#f97316", 
+                    corPreenchimento: "rgba(249, 115, 22, 0.3)"
+                },
+                { 
+                    nome: "Nossa Senhora do Socorro", 
+                    coordenadas: { lat: -10.8556, lng: -37.1261 }, 
+                    zona: "metropolitana", 
+                    tempoChegada: "Agendamento prévio", 
+                    corBorda: "#f97316", 
+                    corPreenchimento: "rgba(249, 115, 22, 0.3)"
+                },
+                { 
+                    nome: "São Cristóvão", 
+                    coordenadas: { lat: -11.0089, lng: -37.2043 }, 
+                    zona: "metropolitana", 
+                    tempoChegada: "Agendamento prévio", 
+                    corBorda: "#f97316", 
+                    corPreenchimento: "rgba(249, 115, 22, 0.3)"
+                }
+            ];
+
+            let mapa;
+            let circulos = [];
+            let marcadores = [];
+            let marcadorBusca;
+            
+            // Inicializar o mapa quando o DOM estiver carregado
+            document.addEventListener('DOMContentLoaded', function() {
+                initMapa();
+                
+                // Evento de clique para buscar endereço
+                document.getElementById("buscar-endereco").addEventListener("click", buscarEndereco);
+                
+                // Permitir busca ao pressionar Enter
+                document.getElementById("endereco-busca").addEventListener("keypress", function(event) {
+                    if (event.key === "Enter") {
+                        buscarEndereco();
+                    }
+                });
+                
+                // Observar mudanças no tema
+                observarMudancaDeTema();
+            });
+            
+            // Inicializar mapa Leaflet
+            function initMapa() {
+                // Remover mensagem de carregamento
+                const loadingPlaceholder = document.querySelector('#mapa-aracaju .absolute');
+                if (loadingPlaceholder) {
+                    loadingPlaceholder.remove();
+                }
+                
+                // Centro do mapa em Aracaju
+                const centroDeMapa = [-10.9472, -37.0731];
+                
+                // Criar mapa
+                mapa = L.map('mapa-aracaju').setView(centroDeMapa, 12);
+                
+                // Adicionar camada de mapa com tema baseado no modo atual (claro/escuro)
+                atualizarEstiloMapa();
+                
+                // Adicionar atribuição
+                mapa.attributionControl.setPrefix('');
+                
+                // Adicionar marcadores e áreas para cada bairro
+                bairrosAracaju.forEach(bairro => {
+                    // Adicionar círculo para representar área aproximada do bairro
+                    const circulo = L.circle(
+                        [bairro.coordenadas.lat, bairro.coordenadas.lng], 
+                        {
+                            color: bairro.corBorda,
+                            fillColor: bairro.corPreenchimento,
+                            fillOpacity: 0.5,
+                            radius: 700, // Raio em metros (aproximado)
+                            weight: 2
+                        }
+                    ).addTo(mapa);
+                    
+                    // Adicionar marcador no centro do círculo
+                    const marcador = L.circleMarker(
+                        [bairro.coordenadas.lat, bairro.coordenadas.lng],
+                        {
+                            radius: 6,
+                            fillColor: obterCorPorZona(bairro.zona),
+                            color: '#ffffff',
+                            weight: 1.5,
+                            opacity: 1,
+                            fillOpacity: 0.9
+                        }
+                    ).addTo(mapa);
+                    
+                    // Adicionar label com nome do bairro
+                    const tooltip = L.tooltip({
+                        permanent: false,
+                        direction: 'top',
+                        className: 'leaflet-tooltip-custom'
+                    }).setContent(bairro.nome);
+                    
+                    marcador.bindTooltip(tooltip);
+                    
+                    // Eventos de clique para mostrar informações do bairro
+                    circulo.on('click', () => mostrarInfoBairro(bairro));
+                    marcador.on('click', () => mostrarInfoBairro(bairro));
+                    
+                    // Armazenar referências
+                    circulos.push(circulo);
+                    marcadores.push(marcador);
+                });
+            }
+            
+            // Atualizar estilo do mapa com base no tema atual
+            function atualizarEstiloMapa() {
+                if (!mapa) return;
+                
+                // Remover camadas de mapa existentes
+                mapa.eachLayer(layer => {
+                    if (layer instanceof L.TileLayer) {
+                        mapa.removeLayer(layer);
+                    }
+                });
+                
+                const isDark = document.documentElement.classList.contains('dark');
+                
+                // Definir camada de mapa adequada ao tema
+                let tileLayer;
+                if (isDark) {
+                    // Estilo escuro
+                    tileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="https://carto.com/attributions">CARTO</a>',
+                        subdomains: 'abcd',
+                        maxZoom: 19
+                    });
+                } else {
+                    // Estilo claro
+                    tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                        maxZoom: 19
+                    });
+                }
+                
+                tileLayer.addTo(mapa);
+            }
+            
+            // Função para mostrar informações do bairro selecionado
+            function mostrarInfoBairro(bairro) {
+                // Atualizar painel de informações
+                const infoLocal = document.getElementById("info-local");
+                
+                let corZona;
+                switch(bairro.zona) {
+                    case "prioritaria": corZona = "text-green-500"; break;
+                    case "padrao": corZona = "text-blue-500"; break;
+                    case "estendida": corZona = "text-yellow-500"; break;
+                    case "metropolitana": corZona = "text-orange-500"; break;
+                    default: corZona = "text-gray-500";
+                }
+                
+                infoLocal.innerHTML = `
+                    <h5 class="font-semibold text-lg">${bairro.nome}</h5>
+                    <div class="mt-2">
+                        <p class="mb-1"><span class="font-medium">Zona:</span> <span class="${corZona} font-medium">${traduzirZona(bairro.zona)}</span></p>
+                        <p class="mb-1"><span class="font-medium">Tempo estimado:</span> ${bairro.tempoChegada}</p>
+                        <p class="text-xs mt-3 ${corZona}"><i class="fas fa-info-circle mr-1"></i> ${obterMensagemZona(bairro.zona)}</p>
+                    </div>
+                `;
+                
+                // Centralizar mapa no bairro selecionado
+                mapa.setView([bairro.coordenadas.lat, bairro.coordenadas.lng], 14);
+            }
+            
+            // Buscar endereço digitado pelo usuário (usando Nominatim do OpenStreetMap)
+            function buscarEndereco() {
+                const endereco = document.getElementById("endereco-busca").value;
+                
+                if (!endereco) return;
+                
+                // Adicionar "Aracaju, SE" ao final se não estiver especificado
+                let enderecoCompleto = endereco;
+                if (!endereco.toLowerCase().includes("aracaju") && !endereco.toLowerCase().includes("sergipe") && !endereco.toLowerCase().includes("se")) {
+                    enderecoCompleto = `${endereco}, Aracaju, Sergipe, Brasil`;
+                }
+                
+                // Usar a API Nominatim para geocodificação (serviço gratuito do OpenStreetMap)
+                fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(enderecoCompleto)}&limit=1`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data && data.length > 0) {
+                            const resultado = data[0];
+                            const lat = parseFloat(resultado.lat);
+                            const lng = parseFloat(resultado.lon);
+                            
+                            // Criar ou atualizar marcador de busca
+                            if (marcadorBusca) {
+                                marcadorBusca.setLatLng([lat, lng]);
+                            } else {
+                                // Criar ícone personalizado para o marcador de busca
+                                const pinIcon = L.divIcon({
+                                    html: `<div class="pin-marker" style="color: var(--color-primary)"><i class="fas fa-map-marker-alt fa-2x"></i></div>`,
+                                    className: 'custom-div-icon',
+                                    iconSize: [30, 42],
+                                    iconAnchor: [15, 42]
+                                });
+                                
+                                marcadorBusca = L.marker([lat, lng], {icon: pinIcon}).addTo(mapa);
+                            }
+                            
+                            // Centralizar mapa na localização
+                            mapa.setView([lat, lng], 15);
+                            
+                            // Encontrar o bairro mais próximo
+                            const bairroMaisProximo = encontrarBairroMaisProximo(lat, lng);
+                            
+                            // Mostrar informações
+                            mostrarInfoLocalEncontrado(resultado.display_name, bairroMaisProximo);
+                            
+                        } else {
+                            // Erro na busca
+                            const infoLocal = document.getElementById("info-local");
+                            infoLocal.innerHTML = `
+                                <div class="text-center py-2">
+                                    <i class="fas fa-exclamation-circle text-red-500 text-xl mb-2"></i>
+                                    <p class="text-red-500">Não foi possível encontrar o endereço.</p>
+                                    <p class="text-sm text-gray-500 mt-2">Tente adicionar mais detalhes, como o bairro ou CEP.</p>
+                                </div>
+                            `;
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Erro ao buscar endereço:", error);
+                        // Mostrar mensagem de erro
+                        const infoLocal = document.getElementById("info-local");
+                        infoLocal.innerHTML = `
+                            <div class="text-center py-2">
+                                <i class="fas fa-exclamation-circle text-red-500 text-xl mb-2"></i>
+                                <p class="text-red-500">Erro ao buscar o endereço.</p>
+                                <p class="text-sm text-gray-500 mt-2">Tente novamente mais tarde.</p>
+                            </div>
+                        `;
+                    });
+            }
+            
+            // Encontrar o bairro mais próximo de uma localização
+            function encontrarBairroMaisProximo(lat, lng) {
+                let bairroMaisProximo = null;
+                let menorDistancia = Number.MAX_VALUE;
+                
+                bairrosAracaju.forEach(bairro => {
+                    const distancia = calcularDistancia(
+                        lat, lng,
+                        bairro.coordenadas.lat, bairro.coordenadas.lng
+                    );
+                    
+                    if (distancia < menorDistancia) {
+                        menorDistancia = distancia;
+                        bairroMaisProximo = bairro;
+                    }
+                });
+                
+                return bairroMaisProximo;
+            }
+            
+            // Mostrar informações de um local encontrado
+            function mostrarInfoLocalEncontrado(endereco, bairroProximo) {
+                const infoLocal = document.getElementById("info-local");
+                
+                let corZona;
+                switch(bairroProximo.zona) {
+                    case "prioritaria": corZona = "text-green-500"; break;
+                    case "padrao": corZona = "text-blue-500"; break;
+                    case "estendida": corZona = "text-yellow-500"; break;
+                    case "metropolitana": corZona = "text-orange-500"; break;
+                    default: corZona = "text-gray-500";
+                }
+                
+                infoLocal.innerHTML = `
+                    <h5 class="font-semibold text-base mb-2">${endereco}</h5>
+                    <div class="bg-gray-100 dark:bg-gray-800 p-3 rounded-lg">
+                        <p class="mb-1"><span class="font-medium">Bairro mais próximo:</span> ${bairroProximo.nome}</p>
+                        <p class="mb-1"><span class="font-medium">Zona:</span> <span class="${corZona} font-medium">${traduzirZona(bairroProximo.zona)}</span></p>
+                        <p class="mb-1"><span class="font-medium">Tempo estimado:</span> ${bairroProximo.tempoChegada}</p>
+                        <p class="text-xs mt-3 ${corZona}"><i class="fas fa-info-circle mr-1"></i> ${obterMensagemZona(bairroProximo.zona)}</p>
+                    </div>
+                `;
+            }
+            
+            // Calcular distância entre dois pontos (usando fórmula de Haversine)
+            function calcularDistancia(lat1, lon1, lat2, lon2) {
+                const R = 6371; // Raio da Terra em km
+                const dLat = (lat2 - lat1) * Math.PI / 180;
+                const dLon = (lon2 - lon1) * Math.PI / 180;
+                const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                        Math.sin(dLon/2) * Math.sin(dLon/2);
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                return R * c; // Distância em km
+            }
+            
+            // Obter cor para uma zona
+            function obterCorPorZona(zona) {
+                switch(zona) {
+                    case "prioritaria": return "#22c55e"; // verde
+                    case "padrao": return "#3b82f6"; // azul
+                    case "estendida": return "#eab308"; // amarelo
+                    case "metropolitana": return "#f97316"; // laranja
+                    default: return "#6b7280"; // cinza
+                }
+            }
+            
+            // Traduzir código da zona para nome legível
+            function traduzirZona(zona) {
+                switch(zona) {
+                    case "prioritaria": return "Prioritária";
+                    case "padrao": return "Padrão";
+                    case "estendida": return "Estendida";
+                    case "metropolitana": return "Região Metropolitana";
+                    default: return "Desconhecida";
+                }
+            }
+            
+            // Obter mensagem informativa sobre a zona
+            function obterMensagemZona(zona) {
+                switch(zona) {
+                    case "prioritaria": 
+                        return "Atendimento prioritário com disponibilidade imediata na maioria dos horários";
+                    case "padrao": 
+                        return "Atendimento normal, com disponibilidade no mesmo dia na maioria dos casos";
+                    case "estendida": 
+                        return "Atendimento sujeito à disponibilidade da agenda, recomendamos agendamento prévio";
+                    case "metropolitana": 
+                        return "Necessário agendamento com pelo menos 1 dia de antecedência";
+                    default: 
+                        return "";
+                }
+            }
+            
+            // Observar mudanças no tema (claro/escuro) e atualizar o mapa
+            function observarMudancaDeTema() {
+                // Verificar tema inicial
+                const isDark = document.documentElement.classList.contains('dark');
+                
+                // Adicionar CSS customizado para marcadores no modo escuro
+                const style = document.createElement('style');
+                style.textContent = `
+                    .leaflet-tooltip-custom {
+                        background-color: ${isDark ? '#1e1e1e' : 'white'};
+                        color: ${isDark ? '#f3f4f6' : '#1f2937'};
+                        border: 1px solid ${isDark ? '#3e3e3e' : '#e5e7eb'};
+                        box-shadow: 0 1px 3px ${isDark ? 'rgba(0,0,0,0.4)' : 'rgba(0,0,0,0.1)'};
+                    }
+                    .pin-marker {
+                        text-shadow: 0px 1px 2px rgba(0,0,0,0.6);
+                    }
+                    .leaflet-control-attribution a {
+                        color: ${isDark ? '#9ca3af' : '#4b5563'};
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                // Observar mudanças futuras
+                const observador = new MutationObserver(mutations => {
+                    mutations.forEach(mutation => {
+                        if (mutation.attributeName === 'class' && mutation.target === document.documentElement) {
+                            atualizarEstiloMapa();
+                        }
+                    });
+                });
+                
+                observador.observe(document.documentElement, { attributes: true });
+            }
         </script>
     </main>
     <footer class="bg-gray-900 dark:bg-black text-white py-12">
