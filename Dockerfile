@@ -9,10 +9,8 @@ LABEL description="Site da Extra Limpo - Limpeza de estofados em Aracaju"
 # Configure o fuso horário
 ENV TZ=America/Recife
 
-# Crie um usuário não-root para executar o Nginx
-# Isso melhora a segurança do container
-RUN addgroup -g 1001 -S appgroup && \
-    adduser -u 1001 -S appuser -G appgroup
+# Remova a configuração padrão do Nginx que não usamos
+RUN rm -f /etc/nginx/conf.d/default.conf.default
 
 # Criar configuração otimizada do Nginx diretamente
 RUN echo 'server { \
@@ -82,12 +80,20 @@ RUN echo 'server { \
     error_log /var/log/nginx/error.log warn; \
 }' > /etc/nginx/conf.d/default.conf
 
-# Remova a configuração padrão do Nginx que não usamos
-RUN rm -f /etc/nginx/conf.d/default.conf.default
+# Modifique arquivo principal do nginx.conf para remover diretiva "user"
+RUN sed -i '/user  nginx;/d' /etc/nginx/nginx.conf
 
-# Crie diretórios necessários com permissões adequadas
+# Crie diretórios necessários e configure permissões corretas
 RUN mkdir -p /usr/share/nginx/html/assets && \
-    chown -R appuser:appgroup /usr/share/nginx/html
+    mkdir -p /var/cache/nginx/client_temp && \
+    mkdir -p /var/cache/nginx/proxy_temp && \
+    mkdir -p /var/cache/nginx/fastcgi_temp && \
+    mkdir -p /var/cache/nginx/uwsgi_temp && \
+    mkdir -p /var/cache/nginx/scgi_temp && \
+    chown -R nginx:nginx /usr/share/nginx && \
+    chown -R nginx:nginx /var/cache/nginx && \
+    chmod -R 755 /var/cache/nginx && \
+    chmod -R 755 /usr/share/nginx
 
 # Copie o arquivo index.html para o diretório do Nginx
 COPY ./index.html /usr/share/nginx/html/
@@ -96,7 +102,7 @@ COPY ./index.html /usr/share/nginx/html/
 COPY ./assets /usr/share/nginx/html/assets/
 
 # Corrija as permissões para todos os arquivos copiados
-RUN chown -R appuser:appgroup /usr/share/nginx/html && \
+RUN chown -R nginx:nginx /usr/share/nginx/html && \
     chmod -R 755 /usr/share/nginx/html
 
 # Limpe arquivos temporários e cache para reduzir o tamanho da imagem
@@ -106,9 +112,6 @@ RUN rm -rf /var/cache/apk/* && \
 # Configure um healthcheck para monitorar a saúde do container
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
     CMD wget --no-verbose --tries=1 --spider http://localhost:80/ || exit 1
-
-# Especifique o usuário não-root para execução
-USER appuser
 
 # Exponha a porta 80, que é a porta padrão do Nginx
 EXPOSE 80
