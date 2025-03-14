@@ -24,4 +24,4 @@ echo "Testando a configuração do Nginx..."
 nginx -t || exit 1
 
 echo "Iniciando o Nginx..."
-exec nginx -g "daemon off;" 
+exec nginx 

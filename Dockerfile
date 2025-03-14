@@ -91,9 +91,10 @@ RUN echo 'server { \
 RUN rm -rf /docker-entrypoint.d/* && \
     rm -f /docker-entrypoint.sh
 
-# Modifique arquivo principal do nginx.conf para remover diretiva "user"
+# Modifique arquivo principal do nginx.conf para remover diretiva "user" 
+# e verificar se daemon já existe antes de adicionar
 RUN sed -i '/user  nginx;/d' /etc/nginx/nginx.conf && \
-    echo "daemon off;" >> /etc/nginx/nginx.conf
+    grep -q "daemon off;" /etc/nginx/nginx.conf || echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # Crie diretórios necessários e configure permissões corretas
 RUN mkdir -p /usr/share/nginx/html/assets && \
