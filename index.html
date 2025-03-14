@@ -517,6 +517,111 @@
             color: #d4ff40 !important; /* Texto em destaque mais brilhante */
             text-shadow: 0 0 2px rgba(171, 219, 0, 0.3);
         }
+        
+        /* Adaptações para a calculadora de orçamento no modo escuro */
+        html.dark #calculadora .bg-gray-50 {
+            background-color: #1a1a1a !important;
+            color: var(--color-text-primary);
+        }
+        
+        html.dark #calculadora .bg-white {
+            background-color: var(--color-card-bg) !important;
+        }
+        
+        html.dark #calculadora h2,
+        html.dark #calculadora h3,
+        html.dark #calculadora h4 {
+            color: var(--color-text-primary) !important;
+        }
+        
+        html.dark #calculadora label {
+            color: var(--color-text-secondary);
+        }
+        
+        html.dark #calculadora .form-checkbox {
+            border-color: var(--color-border);
+            background-color: var(--color-input-bg);
+        }
+        
+        html.dark #calculadora .form-checkbox:checked {
+            background-color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+        
+        html.dark #calculadora select,
+        html.dark #calculadora input[type="text"],
+        html.dark #calculadora textarea {
+            color: var(--color-input-text);
+            background-color: var(--color-input-bg);
+            border-color: var(--color-input-border);
+        }
+        
+        html.dark #calculadora select:focus,
+        html.dark #calculadora input[type="text"]:focus,
+        html.dark #calculadora textarea:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px rgba(171, 219, 0, 0.3);
+        }
+        
+        html.dark #calculadora select option {
+            background-color: var(--color-card-bg);
+            color: var(--color-text-primary);
+        }
+        
+        html.dark #calculadora .border-gray-200 {
+            border-color: var(--color-border) !important;
+        }
+        
+        html.dark #modal-agendamento .form-control {
+            color: var(--color-input-text);
+            background-color: var(--color-input-bg);
+            border-color: var(--color-input-border);
+        }
+        
+        html.dark #modal-agendamento .form-control::placeholder {
+            color: var(--color-input-placeholder);
+        }
+        
+        html.dark #modal-agendamento .form-control:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px rgba(171, 219, 0, 0.3);
+        }
+        
+        html.dark #valor-estimado {
+            color: #d4ff40;
+            text-shadow: 0 0 3px rgba(171, 219, 0, 0.3);
+        }
+        
+        /* Aprimorar os modais no modo escuro para melhor contraste */
+        html.dark .modal-body {
+            color: var(--color-text-primary);
+        }
+        
+        html.dark .modal-footer {
+            background-color: #161616;
+            border-top-color: var(--color-border);
+        }
+        
+        /* Melhorar o contraste dos botões no modo escuro */
+        html.dark .btn-primary {
+            background-color: var(--color-primary);
+            color: #000000;
+            font-weight: 600;
+        }
+        
+        html.dark .btn-primary:hover {
+            background-color: var(--color-primary-dark);
+            box-shadow: 0 0 15px rgba(171, 219, 0, 0.4);
+        }
+        
+        html.dark .btn-secondary {
+            background-color: #3e3e3e;
+            color: #ffffff;
+        }
+        
+        html.dark .btn-secondary:hover {
+            background-color: #4a4a4a;
+        }
 
         /* Cursor personalizado para o modo escuro */
         @media (pointer: fine) {
@@ -1049,6 +1154,8 @@
                     const themeToggle = document.getElementById('theme-toggle');
                     const themeToggleMobile = document.getElementById('theme-toggle-mobile');
                     
+                    if (!themeToggle || !themeToggleMobile) return;
+                    
                     if (isDark) {
                         themeToggle.innerHTML = '<i class="fas fa-sun text-xl"></i><span class="theme-indicator light-indicator"></span><span class="theme-indicator dark-indicator"></span>';
                         themeToggleMobile.innerHTML = '<i class="fas fa-sun text-xl"></i><span class="theme-indicator light-indicator"></span><span class="theme-indicator dark-indicator"></span>';
@@ -1059,6 +1166,19 @@
                                 elem.style.backgroundColor = 'var(--color-primary)';
                             }
                         });
+                        
+                        // Melhorias para elementos específicos no dark mode
+                        document.querySelectorAll('#calculadora .bg-white').forEach(elem => {
+                            elem.style.backgroundColor = 'var(--color-card-bg)';
+                        });
+                        
+                        document.querySelectorAll('#calculadora .bg-gray-50').forEach(elem => {
+                            elem.style.backgroundColor = '#1a1a1a';
+                        });
+                        
+                        document.querySelectorAll('select, input, textarea').forEach(elem => {
+                            elem.classList.add('dark-form-control');
+                        });
                     } else {
                         themeToggle.innerHTML = '<i class="fas fa-moon text-xl"></i><span class="theme-indicator light-indicator"></span><span class="theme-indicator dark-indicator"></span>';
                         themeToggleMobile.innerHTML = '<i class="fas fa-moon text-xl"></i><span class="theme-indicator light-indicator"></span><span class="theme-indicator dark-indicator"></span>';
@@ -1067,17 +1187,60 @@
                         document.querySelectorAll('.bg-custom').forEach(elem => {
                             elem.style.backgroundColor = '';
                         });
+                        
+                        document.querySelectorAll('#calculadora .bg-white').forEach(elem => {
+                            elem.style.backgroundColor = '';
+                        });
+                        
+                        document.querySelectorAll('#calculadora .bg-gray-50').forEach(elem => {
+                            elem.style.backgroundColor = '';
+                        });
+                        
+                        document.querySelectorAll('select, input, textarea').forEach(elem => {
+                            elem.classList.remove('dark-form-control');
+                        });
+                    }
+                    
+                    // Atualizar o estado visual da calculadora
+                    const calculadora = document.getElementById('calculadora');
+                    if (calculadora) {
+                        updateCalculadoraTheme(isDark);
                     }
                 }
                 
-                // Event listeners para os botões de tema
-                document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-                document.getElementById('theme-toggle-mobile').addEventListener('click', toggleTheme);
+                // Função para atualizar o tema da calculadora
+                function updateCalculadoraTheme(isDark) {
+                    const valorEstimado = document.getElementById('valor-estimado');
+                    if (valorEstimado) {
+                        if (isDark) {
+                            valorEstimado.style.color = '#d4ff40';
+                            valorEstimado.style.textShadow = '0 0 3px rgba(171, 219, 0, 0.3)';
+                        } else {
+                            valorEstimado.style.color = '';
+                            valorEstimado.style.textShadow = '';
+                        }
+                    }
+                    
+                    // Atualizar checkboxes para maior contraste
+                    document.querySelectorAll('#calculadora .form-checkbox').forEach(elem => {
+                        if (isDark) {
+                            elem.style.backgroundColor = 'var(--color-input-bg)';
+                            elem.style.borderColor = 'var(--color-border)';
+                        } else {
+                            elem.style.backgroundColor = '';
+                            elem.style.borderColor = '';
+                        }
+                    });
+                }
                 
-                // Ouvir mudanças nas preferências do sistema
+                // Event listeners para os botões de tema
+                document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+                document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
+                
+                // Ouvir mudanças nas preferências do sistema de forma mais eficiente
                 prefersDarkScheme.addEventListener('change', (e) => {
-                    // Somente alterar se o usuário não tiver uma preferência salva
                     if (!localStorage.getItem('theme')) {
+                        // Aplicar as preferências do sistema apenas se o usuário não tiver definido manualmente
                         if (e.matches) {
                             document.documentElement.classList.add('dark');
                             updateThemeIcons(true);
