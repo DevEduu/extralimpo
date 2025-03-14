@@ -1,102 +1,69 @@
-# Extra Limpo - Dockerfile Otimizado
+# Extra Limpo - Site Estático Otimizado
 
-Este é o Dockerfile otimizado para o site da Extra Limpo, uma empresa de limpeza de estofados em Aracaju. O arquivo foi configurado para ser usado de forma independente, sem necessidade de arquivos adicionais como docker-compose.yml ou nginx.conf.
+Este é o repositório do site estático da Extra Limpo, uma empresa de limpeza de estofados em Aracaju. O site foi configurado para ser executado em um container Docker com Nginx, garantindo performance, segurança e facilidade de implantação.
+
+## Estrutura do Projeto
+
+- `index.html` - Página principal do site
+- `assets/` - Diretório contendo imagens e outros recursos estáticos
+- `Dockerfile.final` - Configuração Docker otimizada para o site
+- `docker-compose-final.yml` - Configuração do ambiente Docker Compose
+- `deploy.sh` - Script para facilitar a implantação do site
 
 ## Características
 
-- **Segurança aprimorada**: Usuário não-root, configurações de segurança do Nginx
-- **Performance otimizada**: Compressão gzip, cache de arquivos estáticos, timeouts otimizados
-- **Imagem Alpine leve**: Tamanho reduzido e menor superfície de ataque
-- **Monitoramento integrado**: Healthcheck e endpoint de status para monitoramento
-- **Configuração completa**: Todas as configurações do Nginx incorporadas no Dockerfile
+- **Servidor web leve e rápido**: Baseado em Nginx Alpine para máxima performance
+- **Segurança aprimorada**: Headers HTTP de segurança, permissões adequadas e configurações seguras
+- **Alta performance**: Compressão gzip, cache de arquivos estáticos e timeouts otimizados
+- **Configuração robusta**: Healthcheck integrado e monitoramento via endpoint status
 
 ## Como usar
 
-### Preparação
+### Implantação Rápida
 
-1. Certifique-se de que o arquivo `index.html` e a pasta `assets` estão no mesmo diretório do Dockerfile
-2. Estrutura de arquivos esperada:
-   ```
-   .
-   ├── Dockerfile
-   ├── index.html
-   └── assets/
-       ├── logo.svg
-       ├── favicon.ico
-       ├── sofa.jpeg
-       └── ... (outras imagens)
-   ```
-
-### Build da imagem
+Para implantar o site, simplesmente execute o script de deploy:
 
 ```bash
-docker build -t extralimpo-site:latest .
+./deploy.sh
 ```
 
-### Executar o container
+Isso irá construir e iniciar o container Docker. O site estará disponível em http://localhost:5467.
+
+### Comandos Manuais
+
+Se preferir executar os comandos manualmente:
 
 ```bash
-docker run -d --name extralimpo-site -p 80:80 extralimpo-site:latest
-```
+# Construir e iniciar o container
+docker-compose -f docker-compose-final.yml up -d
 
-Você também pode personalizar a porta exposta:
-
-```bash
-docker run -d --name extralimpo-site -p 5467:80 extralimpo-site:latest
-```
-
-### Verificar status do container
-
-```bash
+# Verificar status
 docker ps | grep extralimpo-site
-```
 
-### Ver logs
-
-```bash
+# Ver logs
 docker logs -f extralimpo-site
+
+# Parar o serviço
+docker-compose -f docker-compose-final.yml down
 ```
 
 ## Personalização
 
-### Mudar o fuso horário
+Para modificar o site:
 
-```bash
-docker run -d --name extralimpo-site -e TZ=America/Sao_Paulo -p 80:80 extralimpo-site:latest
-```
+1. Edite o arquivo `index.html` conforme necessário
+2. Atualize ou adicione recursos na pasta `assets/`
+3. Execute novamente o script de deploy
 
-### Limitar recursos (CPU e memória)
+## Considerações para Produção
 
-```bash
-docker run -d --name extralimpo-site --cpus=0.5 --memory=256M -p 80:80 extralimpo-site:latest
-```
+Para ambientes de produção, considere:
 
-### Persistir logs
+1. Configurar um proxy reverso com suporte a HTTPS
+2. Ajustar os recursos alocados no docker-compose.yml de acordo com as necessidades
+3. Configurar backups regulares dos arquivos do site
 
-```bash
-docker run -d --name extralimpo-site -v nginx_logs:/var/log/nginx -p 80:80 extralimpo-site:latest
-```
+## Requisitos
 
-## Manutenção
-
-### Reiniciar o container
-
-```bash
-docker restart extralimpo-site
-```
-
-### Atualizar o site
-
-1. Modifique os arquivos `index.html` e/ou `assets/`
-2. Reconstrua a imagem: `docker build -t extralimpo-site:latest .`
-3. Pare o container atual: `docker stop extralimpo-site && docker rm extralimpo-site`
-4. Execute o novo container: `docker run -d --name extralimpo-site -p 80:80 extralimpo-site:latest`
-
-## Considerações para produção
-
-Para ambientes de produção, recomenda-se:
-
-1. Utilizar um proxy reverso como Traefik ou Nginx Proxy Manager para gerenciar certificados SSL
-2. Configurar limites de recursos apropriados para seu servidor
-3. Implementar monitoramento usando as métricas disponíveis no endpoint `/stub_status`
-4. Configurar backups regulares dos arquivos do site 
+- Docker 20.10.0+
+- Docker Compose 2.0.0+ 
