@@ -77,6 +77,144 @@
                 padding-bottom: 3rem;
             }
         }
+        
+        /* Modal de Orçamento */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 60;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-container {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal-container {
+            transform: scale(1);
+        }
+        
+        .modal-header {
+            padding: 1rem 1.5rem;
+            background-color: #ABDB00;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h3 {
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            transition: border-color 0.15s ease-in-out;
+        }
+        
+        .form-control:focus {
+            border-color: #ABDB00;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(171, 219, 0, 0.1);
+        }
+        
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            background-color: #F9FAFB;
+            display: flex;
+            justify-content: flex-end;
+            border-top: 1px solid #E5E7EB;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-primary {
+            background-color: #ABDB00;
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: #96c100;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-secondary {
+            background-color: #9CA3AF;
+            color: white;
+            border: none;
+            margin-right: 0.75rem;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #6B7280;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-text {
+            font-size: 0.875rem;
+            color: #6B7280;
+            margin-top: 0.25rem;
+        }
     </style>
     
     <!-- Schema.org para negócio local -->
@@ -557,6 +695,12 @@
                         }
                         
                         const targetId = this.getAttribute('href');
+                        
+                        // Não aplicar scroll suave para o botão de WhatsApp
+                        if (targetId === '#' && this.id === 'whatsapp-button') {
+                            return;
+                        }
+                        
                         const targetElement = document.querySelector(targetId);
                         
                         if (targetElement) {
@@ -569,6 +713,71 @@
                             });
                         }
                     });
+                });
+                
+                // Funcionalidade do modal de orçamento
+                const whatsappButton = document.getElementById('whatsapp-button');
+                const modalOverlay = document.getElementById('modal-orcamento');
+                const modalClose = document.getElementById('modal-close');
+                const btnCancelar = document.getElementById('btn-cancelar');
+                const btnEnviar = document.getElementById('btn-enviar');
+                
+                // Abrir modal
+                whatsappButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modalOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Impede rolagem quando modal está aberto
+                });
+                
+                // Fechar modal
+                function closeModal() {
+                    modalOverlay.classList.remove('active');
+                    document.body.style.overflow = ''; // Restaura rolagem
+                }
+                
+                modalClose.addEventListener('click', closeModal);
+                btnCancelar.addEventListener('click', closeModal);
+                
+                // Fechar modal ao clicar fora
+                modalOverlay.addEventListener('click', function(e) {
+                    if (e.target === modalOverlay) {
+                        closeModal();
+                    }
+                });
+                
+                // Enviar mensagem via WhatsApp
+                btnEnviar.addEventListener('click', function() {
+                    const servico = document.getElementById('servico').value;
+                    const endereco = document.getElementById('endereco').value;
+                    const observacoes = document.getElementById('observacoes').value;
+                    
+                    if (!servico) {
+                        alert('Por favor, selecione um serviço');
+                        return;
+                    }
+                    
+                    // Construir a mensagem
+                    let mensagem = `Olá, Extra Limpo! Gostaria de solicitar um orçamento para ${servico}.`;
+                    
+                    if (endereco) {
+                        mensagem += `\nEndereço: ${endereco}`;
+                    }
+                    
+                    if (observacoes) {
+                        mensagem += `\nObservações: ${observacoes}`;
+                    }
+                    
+                    // Mensagem de fechamento
+                    mensagem += `\n\nAguardo retorno. Obrigado!`;
+                    
+                    // Codificar mensagem para URL
+                    const mensagemCodificada = encodeURIComponent(mensagem);
+                    
+                    // Abrir WhatsApp
+                    window.open(`https://wa.me/5579991059924?text=${mensagemCodificada}`, '_blank');
+                    
+                    // Fechar modal
+                    closeModal();
                 });
             });
         </script>
@@ -600,11 +809,52 @@
             </div>
         </div>
     </footer>
-    <a href="https://wa.me/5579991059924"
+    <a href="#" id="whatsapp-button"
         class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bg-[#25D366] text-white p-3 sm:p-4 rounded-full shadow-lg hover:bg-[#1da851] transition-all duration-300 transform hover:scale-110 z-50 animate-pulse"
         style="width: 70px; height: 70px; display: flex; align-items: center; justify-content: center;" aria-label="Contato WhatsApp">
         <i class="fab fa-whatsapp text-4xl"></i>
     </a>
+    
+    <!-- Modal de Orçamento -->
+    <div class="modal-overlay" id="modal-orcamento">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Solicitar Orçamento</h3>
+                <button class="modal-close" id="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="servico">Qual serviço você precisa?</label>
+                    <select name="servico" id="servico" class="form-control">
+                        <option value="">Selecione um serviço</option>
+                        <option value="Limpeza de Sofá">Limpeza de Sofá</option>
+                        <option value="Limpeza de Cadeiras">Limpeza de Cadeiras</option>
+                        <option value="Limpeza de Bancos de Carro">Bancos de Carro</option>
+                        <option value="Limpeza de Poltronas">Limpeza de Poltronas</option>
+                        <option value="Limpeza de Cama Box">Limpeza de Cama Box</option>
+                        <option value="Limpeza de Colchões">Limpeza de Colchões</option>
+                        <option value="Limpeza de Caminha de Pet">Caminha de Pet</option>
+                        <option value="Limpeza de Bebê Conforto">Bebê Conforto</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="endereco">Endereço (opcional)</label>
+                    <input type="text" name="endereco" id="endereco" class="form-control" placeholder="Informe seu endereço">
+                    <div class="form-text">Se preferir, você pode informar seu endereço diretamente no WhatsApp.</div>
+                </div>
+                <div class="form-group">
+                    <label for="observacoes">Observações (opcional)</label>
+                    <textarea name="observacoes" id="observacoes" rows="3" class="form-control" placeholder="Descreva detalhes adicionais do serviço"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="btn-cancelar">Cancelar</button>
+                <button class="btn btn-primary" id="btn-enviar">Enviar via WhatsApp</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
