@@ -1,0 +1,11 @@
+# Use a imagem base do Nginx
+FROM nginx:latest
+
+# Copie os arquivos HTML para o diretório padrão do Nginx
+COPY ./extralimpo /usr/share/nginx/html
+
+# Exponha a porta 80 para acessar o site
+EXPOSE 80
+
+# Comando de inicialização padrão do Nginx
+CMD ["nginx", "-g", "daemon off;"]
