@@ -59,6 +59,13 @@ RUN echo 'server { \
         add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always; \
     } \
     \
+    # Endpoint para health-check simples \
+    location /health { \
+        access_log off; \
+        add_header Content-Type text/plain; \
+        return 200 "OK"; \
+    } \
+    \
     # Endpoint para monitoramento (acessível apenas internamente) \
     location /stub_status { \
         stub_status on; \
@@ -80,8 +87,13 @@ RUN echo 'server { \
     error_log /var/log/nginx/error.log warn; \
 }' > /etc/nginx/conf.d/default.conf
 
+# Desativar completamente os scripts de entrypoint originais
+RUN rm -rf /docker-entrypoint.d/* && \
+    rm -f /docker-entrypoint.sh
+
 # Modifique arquivo principal do nginx.conf para remover diretiva "user"
-RUN sed -i '/user  nginx;/d' /etc/nginx/nginx.conf
+RUN sed -i '/user  nginx;/d' /etc/nginx/nginx.conf && \
+    echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # Crie diretórios necessários e configure permissões corretas
 RUN mkdir -p /usr/share/nginx/html/assets && \
@@ -90,16 +102,23 @@ RUN mkdir -p /usr/share/nginx/html/assets && \
     mkdir -p /var/cache/nginx/fastcgi_temp && \
     mkdir -p /var/cache/nginx/uwsgi_temp && \
     mkdir -p /var/cache/nginx/scgi_temp && \
+    mkdir -p /var/log/nginx && \
     chown -R nginx:nginx /usr/share/nginx && \
     chown -R nginx:nginx /var/cache/nginx && \
+    chown -R nginx:nginx /var/log/nginx && \
     chmod -R 755 /var/cache/nginx && \
-    chmod -R 755 /usr/share/nginx
+    chmod -R 755 /usr/share/nginx && \
+    chmod -R 755 /var/log/nginx
 
 # Copie o arquivo index.html para o diretório do Nginx
 COPY ./index.html /usr/share/nginx/html/
 
 # Copie a pasta assets para o diretório de recursos do Nginx
 COPY ./assets /usr/share/nginx/html/assets/
+
+# Adicione nosso script de entrada personalizado
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Corrija as permissões para todos os arquivos copiados
 RUN chown -R nginx:nginx /usr/share/nginx/html && \
@@ -109,12 +128,12 @@ RUN chown -R nginx:nginx /usr/share/nginx/html && \
 RUN rm -rf /var/cache/apk/* && \
     rm -rf /tmp/*
 
-# Configure um healthcheck para monitorar a saúde do container
-HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
-    CMD wget --no-verbose --tries=1 --spider http://localhost:80/ || exit 1
+# Configure um healthcheck menos agressivo e com mais tempo para inicialização
+HEALTHCHECK --interval=60s --timeout=10s --start-period=30s --retries=3 \
+    CMD wget --no-verbose --tries=1 --spider http://localhost:80/health || exit 1
 
 # Exponha a porta 80, que é a porta padrão do Nginx
 EXPOSE 80
 
-# Comando para iniciar o Nginx no container
-CMD ["nginx", "-g", "daemon off;"]
+# Use nosso script de entrada personalizado
+ENTRYPOINT ["/entrypoint.sh"]
