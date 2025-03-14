@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  extralimpo-site:
+    build:
+      context: .
+      dockerfile: Dockerfile.final
+    image: extralimpo-site:latest
+    container_name: extralimpo-site
+    ports:
+      - "5467:80"
+    restart: always
+    tty: true         # Manter terminal aberto
+    stdin_open: true  # Manter stdin aberto
+    environment:
+      - TZ=America/Recife
+    volumes:
+      - ./assets:/usr/share/nginx/html/assets
+      - ./index.html:/usr/share/nginx/html/index.html
+    networks:
+      - extralimpo-network
+
+networks:
+  extralimpo-network:
+    driver: bridge 
