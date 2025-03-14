@@ -415,6 +415,79 @@
             border-color: var(--color-border) !important;
         }
         
+        /* Correções para títulos no modo claro */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--color-text-primary);
+        }
+        
+        /* Garantir que todos os títulos com classes de texto tenham cores adequadas */
+        .text-white {
+            color: white !important;
+        }
+        
+        h2.text-gray-900, h3.text-gray-900, h4.text-gray-900 {
+            color: #1f2937 !important;
+        }
+        
+        html:not(.dark) h2, html:not(.dark) h3, html:not(.dark) h4 {
+            color: #1f2937;
+        }
+        
+        html:not(.dark) .bg-white h2, 
+        html:not(.dark) .bg-white h3, 
+        html:not(.dark) .bg-white h4,
+        html:not(.dark) .theme-card h3 {
+            color: #1f2937;
+        }
+        
+        .bg-custom h2, .bg-custom h3, .bg-custom p, .bg-custom span,
+        section.bg-custom * {
+            color: white !important;
+        }
+
+        /* Fixar cores específicas do Tailwind para modo claro */
+        html:not(.dark) .text-gray-900 {
+            color: #1f2937 !important;
+        }
+        
+        html:not(.dark) .text-gray-800 {
+            color: #1f2937 !important;
+        }
+        
+        html:not(.dark) .text-gray-700 {
+            color: #374151 !important;
+        }
+        
+        html:not(.dark) .text-gray-600 {
+            color: #4b5563 !important;
+        }
+        
+        html:not(.dark) section.bg-gray-100 h2 {
+            color: #1f2937 !important;
+        }
+        
+        html:not(.dark) section.bg-gray-100 p {
+            color: #374151 !important;
+        }
+        
+        /* Forçar todos os títulos a terem a cor adequada no modo claro */
+        html:not(.dark) h1, 
+        html:not(.dark) h2, 
+        html:not(.dark) h3, 
+        html:not(.dark) h4, 
+        html:not(.dark) h5, 
+        html:not(.dark) h6 {
+            color: #1f2937 !important;
+        }
+        
+        /* Exceção para títulos em fundos coloridos */
+        html:not(.dark) .bg-custom h2, 
+        html:not(.dark) .bg-custom h3, 
+        html:not(.dark) section.bg-custom h2, 
+        html:not(.dark) section.bg-custom h3 {
+            color: white !important;
+        }
+        
         /* Efeito de "glow" no modo escuro para elementos importantes */
         html.dark .cta-button:hover,
         html.dark .btn-primary:hover {
@@ -789,106 +862,106 @@
         </section>
         <section class="py-16 bg-white dark:bg-gray-900 section-padding" id="servicos">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center mb-4">Serviços de Limpeza de Estofados em Aracaju</h2>
-                <p class="text-lg text-center text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">Oferecemos serviços especializados de higienização e limpeza profunda para diversos tipos de estofados. Usando produtos de alta qualidade e técnicas avançadas para resultados impecáveis.</p>
+                <h2 class="text-3xl font-bold text-center mb-4 text-gray-900 dark:text-white">Serviços de Limpeza de Estofados em Aracaju</h2>
+                <p class="text-lg text-center text-gray-700 dark:text-gray-300 mb-12 max-w-3xl mx-auto">Oferecemos serviços especializados de higienização e limpeza profunda para diversos tipos de estofados. Usando produtos de alta qualidade e técnicas avançadas para resultados impecáveis.</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                     <div class="theme-card p-6 rounded-xl shadow-sm border card-hover">
                         <i class="fas fa-couch text-custom text-3xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Limpeza de Sofás</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Removemos manchas, ácaros e sujeiras profundas com técnicas profissionais. Ideal para sofás de tecido, suede, couro e outros materiais.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Limpeza de Sofás</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Removemos manchas, ácaros e sujeiras profundas com técnicas profissionais. Ideal para sofás de tecido, suede, couro e outros materiais.</p>
                     </div>
                     <div class="theme-card p-6 rounded-xl shadow-sm border card-hover">
                         <i class="fas fa-chair text-custom text-3xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Limpeza de Cadeiras</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Tratamento profissional para renovar suas cadeiras de escritório, jantar ou decorativas. Eliminamos manchas e odores indesejados.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Limpeza de Cadeiras</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Tratamento profissional para renovar suas cadeiras de escritório, jantar ou decorativas. Eliminamos manchas e odores indesejados.</p>
                     </div>
                     <div class="theme-card p-6 rounded-xl shadow-sm border card-hover">
                         <i class="fas fa-car text-custom text-3xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Bancos de Carro</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Higienização completa e segura para os bancos do seu veículo. Removemos manchas e odores com equipamentos especializados.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Bancos de Carro</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Higienização completa e segura para os bancos do seu veículo. Removemos manchas e odores com equipamentos especializados.</p>
                     </div>
                     <div class="theme-card p-6 rounded-xl shadow-sm border card-hover">
                         <i class="fas fa-chair text-custom text-3xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Limpeza de Poltronas</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Restauração e limpeza profunda de poltronas e reclináveis. Devolvemos o aspecto de novo para seu móvel.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Limpeza de Poltronas</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Restauração e limpeza profunda de poltronas e reclináveis. Devolvemos o aspecto de novo para seu móvel.</p>
                     </div>
                     <div class="theme-card p-6 rounded-xl shadow-sm border card-hover">
                         <i class="fas fa-bed text-custom text-3xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Limpeza de Cama Box</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Higienização completa da sua cama box.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Limpeza de Cama Box</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Higienização completa da sua cama box.</p>
                     </div>
                     <div class="theme-card p-6 rounded-xl shadow-sm border card-hover">
                         <i class="fas fa-bed text-custom text-3xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Limpeza de Colchões</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Higienização profunda e remoção de ácaros.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Limpeza de Colchões</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Higienização profunda e remoção de ácaros.</p>
                     </div>
                     <div class="theme-card p-6 rounded-xl shadow-sm border card-hover">
                         <i class="fas fa-paw text-custom text-3xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Caminha de Pet</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Limpeza especializada para caminhas de pets.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Caminha de Pet</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Limpeza especializada para caminhas de pets.</p>
                     </div>
                     <div class="theme-card p-6 rounded-xl shadow-sm border card-hover">
                         <i class="fas fa-baby text-custom text-3xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Bebê Conforto</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Higienização segura para bebê conforto.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Bebê Conforto</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Higienização segura para bebê conforto.</p>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="py-16 bg-gray-100 section-padding">
+        <section class="py-16 bg-gray-100 dark:bg-gray-900 section-padding">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center text-gray-900 mb-4">Por que escolher a Extra Limpo?</h2>
-                <p class="text-lg text-center text-gray-600 mb-12 max-w-3xl mx-auto">Somos especialistas em limpeza de estofados em Aracaju, oferecendo um serviço que combina qualidade, eficiência e preço justo.</p>
+                <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-4">Por que escolher a Extra Limpo?</h2>
+                <p class="text-lg text-center text-gray-700 dark:text-gray-300 mb-12 max-w-3xl mx-auto">Somos especialistas em limpeza de estofados em Aracaju, oferecendo um serviço que combina qualidade, eficiência e preço justo.</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 card-hover">
                         <i class="fas fa-certificate text-custom text-3xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Profissionais Qualificados</h3>
-                        <p class="text-gray-600">Nossa equipe é treinada nas mais avançadas técnicas de higienização de estofados, garantindo resultados superiores.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Profissionais Qualificados</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Nossa equipe é treinada nas mais avançadas técnicas de higienização de estofados, garantindo resultados superiores.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 card-hover">
                         <i class="fas fa-leaf text-custom text-3xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Produtos Ecológicos</h3>
-                        <p class="text-gray-600">Utilizamos produtos biodegradáveis e seguros para sua família, pets e para o meio ambiente.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Produtos Ecológicos</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Utilizamos produtos biodegradáveis e seguros para sua família, pets e para o meio ambiente.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 card-hover">
                         <i class="fas fa-shield-alt text-custom text-3xl mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Garantia de Satisfação</h3>
-                        <p class="text-gray-600">Oferecemos garantia nos nossos serviços. Se você não ficar satisfeito, refazemos o trabalho sem custo adicional.</p>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Garantia de Satisfação</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Oferecemos garantia nos nossos serviços. Se você não ficar satisfeito, refazemos o trabalho sem custo adicional.</p>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="py-16 bg-white section-padding">
+        <section class="py-16 bg-white dark:bg-gray-900 section-padding">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Informações do Serviço</h2>
+                <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">Informações do Serviço</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
-                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300"><i
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300"><i
                             class="fas fa-clock text-custom text-4xl mb-4"></i>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Tempo Médio de Serviço</h3>
-                        <p class="text-xl text-gray-600">Nossos serviços profissionais são realizados em
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Tempo Médio de Serviço</h3>
+                        <p class="text-xl text-gray-700 dark:text-gray-300">Nossos serviços profissionais são realizados em
                             aproximadamente<br /><span class="font-bold text-custom">1 a 2 horas</span><br />dependendo
                             do tamanho e condição do item.</p>
                     </div>
-                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300"><i
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300"><i
                             class="fas fa-wind text-custom text-4xl mb-4"></i>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Tempo de Secagem Natural</h3>
-                        <p class="text-xl text-gray-600">O processo de secagem natural leva em média<br /><span
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Tempo de Secagem Natural</h3>
+                        <p class="text-xl text-gray-700 dark:text-gray-300">O processo de secagem natural leva em média<br /><span
                                 class="font-bold text-custom">3 a 6 horas</span><br />variando conforme as condições
                             climáticas.</p>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="py-16 bg-gray-50 section-padding" id="depoimentos">
+        <section class="py-16 bg-gray-50 dark:bg-gray-900 section-padding" id="depoimentos">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">O Que Nossos Clientes em Aracaju Dizem</h2>
+                <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">O Que Nossos Clientes em Aracaju Dizem</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 carousel-container relative">
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
                         <div class="flex items-center mb-4">
                             <img src="assets/joyce.webp"
                                 alt="Cliente Maria Silva - Depoimento sobre limpeza de sofá em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
                             <div>
-                                <h4 class="font-semibold">Maria Silva</h4>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">Maria Silva</h4>
                                 <div class="text-custom">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -898,15 +971,15 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="text-gray-600">"Meu sofá parecia novo depois do serviço de limpeza da Extra Limpo. Atendimento pontual e profissional. Super recomendo para quem busca limpeza de estofados em Aracaju! 👏"
-                            <span class="text-xs text-gray-400 block mt-2">via WhatsApp</span></p>
+                        <p class="text-gray-700 dark:text-gray-300">"Meu sofá parecia novo depois do serviço de limpeza da Extra Limpo. Atendimento pontual e profissional. Super recomendo para quem busca limpeza de estofados em Aracaju! 👏"
+                            <span class="text-xs text-gray-500 dark:text-gray-400 block mt-2">via WhatsApp</span></p>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
                         <div class="flex items-center mb-4">
                             <img src="assets/diogo.webp"
                                 alt="Cliente João Santos - Depoimento sobre limpeza de carro em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
                             <div>
-                                <h4 class="font-semibold">João Santos</h4>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">João Santos</h4>
                                 <div class="text-custom">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -916,64 +989,64 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="text-gray-600">"Excelente atendimento e resultado impecável na limpeza do meu
-                            carro! 🚗✨" <span class="text-xs text-gray-400 block mt-2">via Instagram</span></p>
+                        <p class="text-gray-700 dark:text-gray-300">"Excelente atendimento e resultado impecável na limpeza do meu
+                            carro! 🚗✨" <span class="text-xs text-gray-500 dark:text-gray-400 block mt-2">via Instagram</span></p>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
                         <div class="flex items-center mb-4"><img
                                 src="assets/edu.webp"
                                 alt="Cliente Ana Beatriz - Depoimento sobre limpeza de poltrona em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
                             <div>
-                                <h4 class="font-semibold">Ana Beatriz</h4>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">Ana Beatriz</h4>
                                 <div class="text-custom"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                                         class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                 </div>
                             </div>
                         </div>
-                        <p class="text-gray-600">"Serviço incrível! Minha poltrona ficou como nova. Recomendo muito!
-                            💯" <span class="text-xs text-gray-400 block mt-2">via Instagram</span></p>
+                        <p class="text-gray-700 dark:text-gray-300">"Serviço incrível! Minha poltrona ficou como nova. Recomendo muito!
+                            💯" <span class="text-xs text-gray-500 dark:text-gray-400 block mt-2">via Instagram</span></p>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
                         <div class="flex items-center mb-4"><img
                                 src="assets/michael.webp"
                                 alt="Cliente Pedro Lima - Depoimento sobre limpeza de sofá em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
                             <div>
-                                <h4 class="font-semibold">Pedro Lima</h4>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">Pedro Lima</h4>
                                 <div class="text-custom"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                                         class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                 </div>
                             </div>
                         </div>
-                        <p class="text-gray-600">"Serviço de primeira qualidade! Meu sofá ficou irreconhecível de
-                            tão limpo. 🌟" <span class="text-xs text-gray-400 block mt-2">via WhatsApp</span></p>
+                        <p class="text-gray-700 dark:text-gray-300">"Serviço de primeira qualidade! Meu sofá ficou irreconhecível de
+                            tão limpo. 🌟" <span class="text-xs text-gray-500 dark:text-gray-400 block mt-2">via WhatsApp</span></p>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
                         <div class="flex items-center mb-4"><img
                                 src="assets/clewerton.webp"
                                 alt="Cliente Carla Oliveira - Depoimento sobre higienização de cama box em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
                             <div>
-                                <h4 class="font-semibold">Carla Oliveira</h4>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">Carla Oliveira</h4>
                                 <div class="text-custom"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                                         class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                 </div>
                             </div>
                         </div>
-                        <p class="text-gray-600">"Profissionais muito atenciosos e cuidadosos. Resultado fantástico!
-                            😊" <span class="text-xs text-gray-400 block mt-2">via Instagram</span></p>
+                        <p class="text-gray-700 dark:text-gray-300">"Profissionais muito atenciosos e cuidadosos. Resultado fantástico!
+                            😊" <span class="text-xs text-gray-500 dark:text-gray-400 block mt-2">via Instagram</span></p>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
                         <div class="flex items-center mb-4"><img
                                 src="assets/Anibal.webp"
                                 alt="Cliente Roberto Costa - Depoimento sobre higienização de colchão em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
                             <div>
-                                <h4 class="font-semibold">Roberto Costa</h4>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">Roberto Costa</h4>
                                 <div class="text-custom"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                                         class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                 </div>
                             </div>
                         </div>
-                        <p class="text-gray-600">"Profissionais pontuais e serviço de alta qualidade! A limpeza do
-                            meu colchão ficou perfeita. 🌟" <span class="text-xs text-gray-400 block mt-2">via WhatsApp</span>
+                        <p class="text-gray-700 dark:text-gray-300">"Profissionais pontuais e serviço de alta qualidade! A limpeza do
+                            meu colchão ficou perfeita. 🌟" <span class="text-xs text-gray-500 dark:text-gray-400 block mt-2">via WhatsApp</span>
                         </p>
                     </div>
                     
@@ -983,7 +1056,7 @@
                             <img src="https://ui-avatars.com/api/?name=Fernanda+Cardoso&background=ABDB00&color=fff&size=128&bold=true"
                                 alt="Cliente Fernanda Cardoso - Depoimento sobre limpeza de sofá em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
                             <div>
-                                <h4 class="font-semibold">Fernanda Cardoso</h4>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">Fernanda Cardoso</h4>
                                 <div class="text-custom">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -993,7 +1066,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="text-gray-600">"Simplesmente maravilhoso! Meu sofá tinha manchas de café de mais de 2 anos que eu já tinha perdido a esperança de remover. Depois da visita da Extra Limpo, parece que comprei um sofá novo! O atendimento foi excepcional e pontual. Super recomendo! 👌" <span class="text-xs text-gray-400 block mt-2">via Google</span></p>
+                        <p class="text-gray-700 dark:text-gray-300">"Simplesmente maravilhoso! Meu sofá tinha manchas de café de mais de 2 anos que eu já tinha perdido a esperança de remover. Depois da visita da Extra Limpo, parece que comprei um sofá novo! O atendimento foi excepcional e pontual. Super recomendo! 👌" <span class="text-xs text-gray-500 dark:text-gray-400 block mt-2">via Google</span></p>
                     </div>
                     
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
@@ -1001,7 +1074,7 @@
                             <img src="https://ui-avatars.com/api/?name=Marcelo+Almeida&background=ABDB00&color=fff&size=128&bold=true"
                                 alt="Cliente Marcelo Almeida - Depoimento sobre limpeza de tapete em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
                             <div>
-                                <h4 class="font-semibold">Marcelo Almeida</h4>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">Marcelo Almeida</h4>
                                 <div class="text-custom">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -1011,7 +1084,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="text-gray-600">"Contratei o serviço para higienizar meus tapetes da sala que estavam com cheiro de pet. O resultado superou minhas expectativas! Além de eliminar completamente o odor, a aparência ficou renovada. O técnico foi muito cuidadoso e explicou todo o processo. Recomendo a todos em Aracaju! 🐾✨" <span class="text-xs text-gray-400 block mt-2">via WhatsApp</span></p>
+                        <p class="text-gray-700 dark:text-gray-300">"Contratei o serviço para higienizar meus tapetes da sala que estavam com cheiro de pet. O resultado superou minhas expectativas! Além de eliminar completamente o odor, a aparência ficou renovada. O técnico foi muito cuidadoso e explicou todo o processo. Recomendo a todos em Aracaju! 🐾✨" <span class="text-xs text-gray-500 dark:text-gray-400 block mt-2">via WhatsApp</span></p>
                     </div>
                     
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
@@ -1019,7 +1092,7 @@
                             <img src="https://ui-avatars.com/api/?name=Juliana+Mendes&background=ABDB00&color=fff&size=128&bold=true"
                                 alt="Cliente Juliana Mendes - Depoimento sobre limpeza de cadeiras em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
                             <div>
-                                <h4 class="font-semibold">Juliana Mendes</h4>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">Juliana Mendes</h4>
                                 <div class="text-custom">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -1029,7 +1102,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="text-gray-600">"Precisei higienizar as cadeiras da minha sala de jantar para um evento importante. A Extra Limpo foi super ágil e atendeu em 24h. O preço foi justo e o resultado excelente. As cadeiras brancas, que estavam amareladas, voltaram à cor original! Sem dúvidas, vou contratar novamente. 🏆" <span class="text-xs text-gray-400 block mt-2">via Instagram</span></p>
+                        <p class="text-gray-700 dark:text-gray-300">"Precisei higienizar as cadeiras da minha sala de jantar para um evento importante. A Extra Limpo foi super ágil e atendeu em 24h. O preço foi justo e o resultado excelente. As cadeiras brancas, que estavam amareladas, voltaram à cor original! Sem dúvidas, vou contratar novamente. 🏆" <span class="text-xs text-gray-500 dark:text-gray-400 block mt-2">via Instagram</span></p>
                     </div>
                     
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
@@ -1037,7 +1110,7 @@
                             <img src="https://ui-avatars.com/api/?name=Rafael+Nogueira&background=ABDB00&color=fff&size=128&bold=true"
                                 alt="Cliente Rafael Nogueira - Depoimento sobre limpeza de colchão em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
                             <div>
-                                <h4 class="font-semibold">Rafael Nogueira</h4>
+                                <h4 class="font-semibold text-gray-900 dark:text-white">Rafael Nogueira</h4>
                                 <div class="text-custom">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -1047,7 +1120,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="text-gray-600">"Tenho problemas de alergia e decidi fazer uma limpeza profunda no colchão. A diferença foi surpreendente! Durmo muito melhor agora, sem crises de espirro. Os profissionais da Extra Limpo são verdadeiros especialistas e usam produtos que não têm cheiro forte. Já indiquei para toda minha família! 🌬️🛏️" <span class="text-xs text-gray-400 block mt-2">via Google</span></p>
+                        <p class="text-gray-700 dark:text-gray-300">"Tenho problemas de alergia e decidi fazer uma limpeza profunda no colchão. A diferença foi surpreendente! Durmo muito melhor agora, sem crises de espirro. Os profissionais da Extra Limpo são verdadeiros especialistas e usam produtos que não têm cheiro forte. Já indiquei para toda minha família! 🌬️🛏️" <span class="text-xs text-gray-500 dark:text-gray-400 block mt-2">via Google</span></p>
                     </div>
                 </div>
                 <div class="flex justify-center mt-8 space-x-4">
@@ -1060,36 +1133,36 @@
                 </div>
             </div>
         </section>
-        <section class="py-16 bg-white section-padding">
+        <section class="py-16 bg-white dark:bg-gray-900 section-padding">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">Área de Atendimento</h2>
-                <p class="text-lg text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-6">Área de Atendimento</h2>
+                <p class="text-lg text-center text-gray-700 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
                     Atendemos em toda cidade de Aracaju e região metropolitana, incluindo:
                 </p>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <p class="font-medium">Atalaia</p>
+                    <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-100 dark:border-gray-700">
+                        <p class="font-medium text-gray-900 dark:text-white">Atalaia</p>
                     </div>
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <p class="font-medium">Coroa do Meio</p>
+                    <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-100 dark:border-gray-700">
+                        <p class="font-medium text-gray-900 dark:text-white">Coroa do Meio</p>
                     </div>
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <p class="font-medium">Jardins</p>
+                    <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-100 dark:border-gray-700">
+                        <p class="font-medium text-gray-900 dark:text-white">Jardins</p>
                     </div>
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <p class="font-medium">Grageru</p>
+                    <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-100 dark:border-gray-700">
+                        <p class="font-medium text-gray-900 dark:text-white">Grageru</p>
                     </div>
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <p class="font-medium">13 de Julho</p>
+                    <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-100 dark:border-gray-700">
+                        <p class="font-medium text-gray-900 dark:text-white">13 de Julho</p>
                     </div>
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <p class="font-medium">Farolândia</p>
+                    <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-100 dark:border-gray-700">
+                        <p class="font-medium text-gray-900 dark:text-white">Farolândia</p>
                     </div>
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <p class="font-medium">Salgado Filho</p>
+                    <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-100 dark:border-gray-700">
+                        <p class="font-medium text-gray-900 dark:text-white">Salgado Filho</p>
                     </div>
-                    <div class="bg-gray-50 p-4 rounded-lg">
-                        <p class="font-medium">Zona de Expansão</p>
+                    <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-100 dark:border-gray-700">
+                        <p class="font-medium text-gray-900 dark:text-white">Zona de Expansão</p>
                     </div>
                 </div>
             </div>
