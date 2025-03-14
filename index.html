@@ -989,6 +989,91 @@
                 </div>
             </div>
         </section>
+
+        <!-- Nova Seção: Calculadora de Orçamento -->
+        <section class="py-16 bg-gray-50 section-padding" id="calculadora">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-4">Calculadora de Orçamento</h2>
+                <p class="text-lg text-center text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">
+                    Faça uma estimativa rápida do valor do serviço de limpeza. Personalize as opções abaixo para obter um orçamento instantâneo.
+                </p>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden max-w-3xl mx-auto">
+                    <div class="bg-custom p-6">
+                        <h3 class="text-2xl font-bold text-white dark:text-black text-center">Simule seu orçamento</h3>
+                    </div>
+                    
+                    <div class="p-6 md:p-8">
+                        <form id="calc-form" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="form-group">
+                                    <label for="calc-servico" class="block text-lg font-medium mb-2">Tipo de Móvel</label>
+                                    <select id="calc-servico" class="form-control w-full">
+                                        <option value="">Selecione um item</option>
+                                        <option value="sofa">Sofá</option>
+                                        <option value="poltrona">Poltrona</option>
+                                        <option value="cadeira">Cadeira</option>
+                                        <option value="colchao">Colchão</option>
+                                        <option value="cama-box">Cama Box</option>
+                                        <option value="banco-carro">Banco de Carro</option>
+                                        <option value="tapete">Tapete</option>
+                                        <option value="caminha-pet">Caminha de Pet</option>
+                                        <option value="bebe-conforto">Bebê Conforto</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="calc-tamanho" class="block text-lg font-medium mb-2">Tamanho</label>
+                                    <select id="calc-tamanho" class="form-control w-full" disabled>
+                                        <option value="">Selecione o tamanho</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div id="opcoes-adicionais" class="hidden">
+                                <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
+                                    <h4 class="text-lg font-medium mb-3">Opções Adicionais</h4>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="manchas-dificeis" class="form-checkbox h-5 w-5 text-custom">
+                                            <label for="manchas-dificeis" class="ml-2">Manchas Difíceis (+15%)</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="higienizacao-profunda" class="form-checkbox h-5 w-5 text-custom">
+                                            <label for="higienizacao-profunda" class="ml-2">Higienização Profunda (+20%)</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="protecao-tecido" class="form-checkbox h-5 w-5 text-custom">
+                                            <label for="protecao-tecido" class="ml-2">Proteção para Tecido (+10%)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="resultado-orcamento" class="hidden">
+                                <div class="border-t border-gray-200 dark:border-gray-700 pt-6 mt-6">
+                                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 text-center">
+                                        <h4 class="text-xl font-medium mb-2">Valor Estimado</h4>
+                                        <p class="text-3xl font-bold text-custom">R$ <span id="valor-estimado">0,00</span></p>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Valores sujeitos a confirmação na visita técnica</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4 pt-4">
+                                <button type="button" id="btn-agendar" class="btn btn-primary flex items-center justify-center">
+                                    <i class="fas fa-calendar-alt mr-2"></i>Agendar Visita Técnica
+                                </button>
+                                <a href="https://wa.me/5579991059924" class="btn bg-[#25D366] hover:bg-[#1da851] text-white flex items-center justify-center">
+                                    <i class="fab fa-whatsapp mr-2"></i>Enviar no WhatsApp
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <section id="contato" class="py-16 bg-custom section-padding">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="text-3xl font-bold text-white mb-6">Agende Sua Limpeza de Estofados em Aracaju</h2>
@@ -1307,6 +1392,332 @@
                     // Fechar modal
                     closeModal();
                 });
+
+                // Calculadora de Orçamento
+                const calcServico = document.getElementById('calc-servico');
+                const calcTamanho = document.getElementById('calc-tamanho');
+                const opcoesAdicionais = document.getElementById('opcoes-adicionais');
+                const resultadoOrcamento = document.getElementById('resultado-orcamento');
+                const valorEstimado = document.getElementById('valor-estimado');
+                const btnAgendar = document.getElementById('btn-agendar');
+                
+                // Modais de agendamento
+                const modalAgendamento = document.getElementById('modal-agendamento');
+                const modalAgendamentoClose = document.getElementById('modal-agendamento-close');
+                const btnCancelarAgendamento = document.getElementById('btn-cancelar-agendamento');
+                const btnConfirmarAgendamento = document.getElementById('btn-confirmar-agendamento');
+                const resumoServico = document.getElementById('resumo-servico');
+                
+                // Tabela de preços por tipo e tamanho
+                const tabelaPrecos = {
+                    sofa: {
+                        pequeno: 120, // 2 lugares
+                        medio: 180,   // 3 lugares
+                        grande: 240,  // 4 lugares
+                        'extra-grande': 300 // L ou maior
+                    },
+                    poltrona: {
+                        padrao: 80,
+                        reclinavel: 100
+                    },
+                    cadeira: {
+                        jantar: 40,
+                        escritorio: 60,
+                        gamer: 90
+                    },
+                    colchao: {
+                        solteiro: 90,
+                        casal: 140,
+                        queen: 180,
+                        king: 220
+                    },
+                    'cama-box': {
+                        solteiro: 120,
+                        casal: 180,
+                        queen: 220,
+                        king: 260
+                    },
+                    'banco-carro': {
+                        dianteiro: 80,
+                        traseiro: 100,
+                        completo: 160
+                    },
+                    tapete: {
+                        pequeno: 80,
+                        medio: 120,
+                        grande: 180
+                    },
+                    'caminha-pet': {
+                        pequena: 50,
+                        media: 70,
+                        grande: 90
+                    },
+                    'bebe-conforto': {
+                        padrao: 70
+                    }
+                };
+                
+                // Descrições dos tamanhos
+                const descricoesTamanhos = {
+                    sofa: {
+                        pequeno: "Pequeno (2 lugares)",
+                        medio: "Médio (3 lugares)",
+                        grande: "Grande (4 lugares)",
+                        'extra-grande': "Extra Grande (L ou maior)"
+                    },
+                    poltrona: {
+                        padrao: "Padrão",
+                        reclinavel: "Reclinável"
+                    },
+                    cadeira: {
+                        jantar: "Cadeira de Jantar",
+                        escritorio: "Cadeira de Escritório",
+                        gamer: "Cadeira Gamer"
+                    },
+                    colchao: {
+                        solteiro: "Solteiro",
+                        casal: "Casal",
+                        queen: "Queen Size",
+                        king: "King Size"
+                    },
+                    'cama-box': {
+                        solteiro: "Solteiro",
+                        casal: "Casal",
+                        queen: "Queen Size",
+                        king: "King Size"
+                    },
+                    'banco-carro': {
+                        dianteiro: "Banco Dianteiro",
+                        traseiro: "Banco Traseiro",
+                        completo: "Todos os Bancos"
+                    },
+                    tapete: {
+                        pequeno: "Pequeno (até 2m²)",
+                        medio: "Médio (2m² a 6m²)",
+                        grande: "Grande (acima de 6m²)"
+                    },
+                    'caminha-pet': {
+                        pequena: "Pequena (até 50cm)",
+                        media: "Média (50cm a 80cm)",
+                        grande: "Grande (acima de 80cm)"
+                    },
+                    'bebe-conforto': {
+                        padrao: "Padrão"
+                    }
+                };
+                
+                // Atualizar opções de tamanho com base no serviço selecionado
+                calcServico.addEventListener('change', function() {
+                    const servico = this.value;
+                    
+                    // Limpar select de tamanho
+                    calcTamanho.innerHTML = '<option value="">Selecione o tamanho</option>';
+                    
+                    if (servico) {
+                        // Habilitar select de tamanho
+                        calcTamanho.disabled = false;
+                        
+                        // Adicionar opções de tamanho baseadas no serviço
+                        const tamanhos = tabelaPrecos[servico];
+                        const descricoes = descricoesTamanhos[servico];
+                        
+                        for (const [key, value] of Object.entries(tamanhos)) {
+                            const option = document.createElement('option');
+                            option.value = key;
+                            option.textContent = descricoes[key];
+                            calcTamanho.appendChild(option);
+                        }
+                    } else {
+                        // Desabilitar select de tamanho
+                        calcTamanho.disabled = true;
+                        
+                        // Esconder opções adicionais e resultado
+                        opcoesAdicionais.classList.add('hidden');
+                        resultadoOrcamento.classList.add('hidden');
+                    }
+                });
+                
+                // Calcular e mostrar resultado quando tamanho for selecionado
+                calcTamanho.addEventListener('change', function() {
+                    if (this.value) {
+                        // Mostrar opções adicionais
+                        opcoesAdicionais.classList.remove('hidden');
+                        // Mostrar resultado
+                        resultadoOrcamento.classList.remove('hidden');
+                        // Calcular preço
+                        calcularPreco();
+                    } else {
+                        // Esconder opções adicionais e resultado
+                        opcoesAdicionais.classList.add('hidden');
+                        resultadoOrcamento.classList.add('hidden');
+                    }
+                });
+                
+                // Recalcular quando opções adicionais forem alteradas
+                document.getElementById('manchas-dificeis').addEventListener('change', calcularPreco);
+                document.getElementById('higienizacao-profunda').addEventListener('change', calcularPreco);
+                document.getElementById('protecao-tecido').addEventListener('change', calcularPreco);
+                
+                // Função para calcular o preço
+                function calcularPreco() {
+                    const servico = calcServico.value;
+                    const tamanho = calcTamanho.value;
+                    
+                    if (!servico || !tamanho) return;
+                    
+                    // Preço base
+                    let preco = tabelaPrecos[servico][tamanho];
+                    
+                    // Adicionar extras
+                    if (document.getElementById('manchas-dificeis').checked) {
+                        preco += preco * 0.15;
+                    }
+                    
+                    if (document.getElementById('higienizacao-profunda').checked) {
+                        preco += preco * 0.20;
+                    }
+                    
+                    if (document.getElementById('protecao-tecido').checked) {
+                        preco += preco * 0.10;
+                    }
+                    
+                    // Arredondar para inteiro
+                    preco = Math.round(preco);
+                    
+                    // Exibir resultado
+                    valorEstimado.textContent = preco.toLocaleString('pt-BR', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                }
+                
+                // Botão de agendar
+                btnAgendar.addEventListener('click', function() {
+                    const servico = calcServico.options[calcServico.selectedIndex].text;
+                    const tamanho = calcTamanho.options[calcTamanho.selectedIndex].text;
+                    const preco = valorEstimado.textContent;
+                    
+                    // Preparar resumo do serviço para o modal de agendamento
+                    let resumo = `Serviço: Limpeza de ${servico}\nTamanho: ${tamanho}\n`;
+                    
+                    if (document.getElementById('manchas-dificeis').checked) {
+                        resumo += "- Com tratamento para manchas difíceis\n";
+                    }
+                    
+                    if (document.getElementById('higienizacao-profunda').checked) {
+                        resumo += "- Com higienização profunda\n";
+                    }
+                    
+                    if (document.getElementById('protecao-tecido').checked) {
+                        resumo += "- Com proteção para tecido\n";
+                    }
+                    
+                    resumo += `\nValor estimado: R$ ${preco}`;
+                    
+                    // Preencher campo de resumo no modal
+                    resumoServico.value = resumo;
+                    
+                    // Definir data mínima como hoje
+                    const hoje = new Date();
+                    const dataFormatada = hoje.toISOString().split('T')[0];
+                    document.getElementById('data-visita').min = dataFormatada;
+                    
+                    // Abrir modal de agendamento
+                    modalAgendamento.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+                
+                // Fechar modal de agendamento
+                function closeModalAgendamento() {
+                    modalAgendamento.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+                
+                modalAgendamentoClose.addEventListener('click', closeModalAgendamento);
+                btnCancelarAgendamento.addEventListener('click', closeModalAgendamento);
+                
+                // Fechar modal ao clicar fora
+                modalAgendamento.addEventListener('click', function(e) {
+                    if (e.target === modalAgendamento) {
+                        closeModalAgendamento();
+                    }
+                });
+                
+                // Confirmar agendamento
+                btnConfirmarAgendamento.addEventListener('click', function() {
+                    const form = document.querySelector('#modal-agendamento .modal-body');
+                    const inputs = form.querySelectorAll('input, select');
+                    let isValid = true;
+                    
+                    // Validação simples
+                    inputs.forEach(input => {
+                        if (input.hasAttribute('required') && !input.value) {
+                            input.classList.add('border-red-500');
+                            isValid = false;
+                        } else {
+                            input.classList.remove('border-red-500');
+                        }
+                    });
+                    
+                    if (!isValid) {
+                        alert('Por favor, preencha todos os campos obrigatórios.');
+                        return;
+                    }
+                    
+                    // Obter dados
+                    const nome = document.getElementById('nome').value;
+                    const telefone = document.getElementById('telefone').value;
+                    const endereco = document.getElementById('endereco-agendamento').value;
+                    const data = document.getElementById('data-visita').value;
+                    const horario = document.getElementById('horario-visita').value;
+                    const resumo = document.getElementById('resumo-servico').value;
+                    
+                    // Formatar data
+                    const dataObj = new Date(data);
+                    const dataFormatada = `${dataObj.getDate().toString().padStart(2, '0')}/${(dataObj.getMonth() + 1).toString().padStart(2, '0')}/${dataObj.getFullYear()}`;
+                    
+                    // Construir mensagem
+                    let mensagem = `Olá, Extra Limpo! Gostaria de agendar uma visita técnica:\n\n`;
+                    mensagem += `Nome: ${nome}\n`;
+                    mensagem += `Telefone: ${telefone}\n`;
+                    mensagem += `Endereço: ${endereco}\n`;
+                    mensagem += `Data: ${dataFormatada}\n`;
+                    mensagem += `Horário: ${horario}\n\n`;
+                    mensagem += `${resumo}\n\n`;
+                    mensagem += `Aguardo confirmação. Obrigado!`;
+                    
+                    // Codificar mensagem
+                    const mensagemCodificada = encodeURIComponent(mensagem);
+                    
+                    // Abrir WhatsApp
+                    window.open(`https://wa.me/5579991059924?text=${mensagemCodificada}`, '_blank');
+                    
+                    // Fechar modal
+                    closeModalAgendamento();
+                    
+                    // Mostrar confirmação
+                    alert('Agendamento enviado! Em breve entraremos em contato para confirmar sua visita técnica.');
+                });
+                
+                // Adicionar opção na navegação
+                const headerNav = document.querySelector('.hidden.md\\:flex.items-center.space-x-8');
+                const calcLink = document.createElement('a');
+                calcLink.href = '#calculadora';
+                calcLink.className = 'text-white hover:text-gray-200 transition-colors text-base font-medium';
+                calcLink.innerHTML = '<i class="fas fa-calculator mr-2"></i>Calculadora';
+                
+                // Inserir antes do último item (tema toggle)
+                headerNav.insertBefore(calcLink, headerNav.lastElementChild);
+                
+                // Também adicionar no menu mobile
+                const mobileNav = document.querySelector('.mobile-menu-items .flex.flex-col.space-y-4');
+                const calcLinkMobile = document.createElement('a');
+                calcLinkMobile.href = '#calculadora';
+                calcLinkMobile.className = 'text-gray-700 dark:text-gray-200 hover:text-custom dark:hover:text-custom transition-colors font-medium';
+                calcLinkMobile.innerHTML = '<i class="fas fa-calculator mr-2"></i>Calculadora';
+                
+                // Inserir como segundo item no menu mobile
+                mobileNav.insertBefore(calcLinkMobile, mobileNav.children[1]);
             });
         </script>
     </main>
@@ -1380,6 +1791,54 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" id="btn-cancelar">Cancelar</button>
                 <button class="btn btn-primary" id="btn-enviar">Enviar via WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Agendamento -->
+    <div class="modal-overlay" id="modal-agendamento">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Agendar Visita Técnica</h3>
+                <button class="modal-close" id="modal-agendamento-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="nome">Seu Nome</label>
+                    <input type="text" name="nome" id="nome" class="form-control" placeholder="Digite seu nome completo" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" name="telefone" id="telefone" class="form-control" placeholder="(00) 00000-0000" required>
+                </div>
+                <div class="form-group">
+                    <label for="endereco-agendamento">Endereço</label>
+                    <input type="text" name="endereco-agendamento" id="endereco-agendamento" class="form-control" placeholder="Informe seu endereço completo" required>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-group">
+                        <label for="data-visita">Data para Visita</label>
+                        <input type="date" name="data-visita" id="data-visita" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="horario-visita">Horário Preferido</label>
+                        <select name="horario-visita" id="horario-visita" class="form-control" required>
+                            <option value="">Selecione um horário</option>
+                            <option value="Manhã (8h-12h)">Manhã (8h-12h)</option>
+                            <option value="Tarde (13h-18h)">Tarde (13h-18h)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="resumo-servico">Resumo do Serviço</label>
+                    <textarea name="resumo-servico" id="resumo-servico" rows="3" class="form-control" readonly></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="btn-cancelar-agendamento">Cancelar</button>
+                <button class="btn btn-primary" id="btn-confirmar-agendamento">Confirmar Agendamento</button>
             </div>
         </div>
     </div>
