@@ -4,7 +4,28 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Extra Limpo - Limpeza de Estofados em Aracaju</title>
+    <title>Extra Limpo - Limpeza de Estofados em Aracaju | Sofás, Cadeiras e Colchões</title>
+    <meta name="description" content="Empresa especializada em limpeza de estofados em Aracaju. Higienização profissional de sofás, poltronas, cadeiras, colchões e bancos de carro. Agende agora!" />
+    <meta name="keywords" content="limpeza de estofados, limpeza de sofá, higienização de estofados, limpeza de colchão, limpeza de sofá em aracaju, higienização de estofados aracaju, limpeza de poltrona" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Extra Limpo" />
+    <link rel="canonical" href="https://extralimpo.com.br/" />
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://extralimpo.com.br/" />
+    <meta property="og:title" content="Extra Limpo - Limpeza de Estofados em Aracaju" />
+    <meta property="og:description" content="Empresa especializada em limpeza de estofados em Aracaju. Higienização profissional de sofás, poltronas, cadeiras e colchões." />
+    <meta property="og:image" content="assets/logo.svg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://extralimpo.com.br/" />
+    <meta property="twitter:title" content="Extra Limpo - Limpeza de Estofados em Aracaju" />
+    <meta property="twitter:description" content="Empresa especializada em limpeza de estofados em Aracaju. Higienização profissional de sofás, poltronas, cadeiras e colchões." />
+    <meta property="twitter:image" content="assets/logo.svg" />
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap"
         rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
@@ -57,6 +78,74 @@
             }
         }
     </style>
+    
+    <!-- Schema.org para negócio local -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Extra Limpo",
+      "image": "assets/logo.svg",
+      "url": "https://extralimpo.com.br/",
+      "telephone": "+5579991059924",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Aracaju",
+        "addressRegion": "SE",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -10.9472468,
+        "longitude": -37.0730823
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "08:00",
+        "closes": "18:00"
+      },
+      "priceRange": "$$",
+      "description": "Empresa especializada em limpeza e higienização de estofados em Aracaju. Atendemos sofás, poltronas, cadeiras, colchões e bancos de carro com qualidade e eficiência.",
+      "sameAs": [
+        "https://www.instagram.com/extralimpo.aracaju/",
+        "https://wa.me/5579991059924"
+      ]
+    }
+    </script>
+    
+    <!-- Schema.org para serviços oferecidos -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Limpeza de Estofados",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Extra Limpo"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Aracaju"
+      },
+      "description": "Serviço profissional de limpeza e higienização de estofados, incluindo sofás, poltronas, cadeiras, colchões e bancos de carro.",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "BRL"
+        }
+      }
+    }
+    </script>
 </head>
 
 <body class="font-[Poppins] bg-gray-50">
@@ -64,8 +153,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center">
-                    <img src="https://drive.google.com/uc?export=view&amp;id=13YHwRWButySShfQf89FxBmyiFT1tyTwP"
-                        alt="Extra Limpo" class="h-10 md:h-12" />
+                    <img src="assets/logo.svg"
+                        alt="Extra Limpo - Limpeza de Estofados em Aracaju" class="h-10 md:h-12" />
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#servicos" class="text-white hover:text-gray-200 transition-colors text-base font-medium">
@@ -78,7 +167,7 @@
                         <i class="fas fa-phone mr-2"></i>Contato
                     </a>
                 </div>
-                <button class="md:hidden text-white hover:text-gray-200 transition-colors focus:outline-none" id="mobile-menu-button">
+                <button class="md:hidden text-white hover:text-gray-200 transition-colors focus:outline-none" id="mobile-menu-button" aria-label="Menu">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
@@ -103,10 +192,10 @@
                 <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center flex flex-col-reverse">
                     <div class="animate-fadeIn">
                         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 text-center lg:text-left">
-                            Deixe Seus Estofados Brilhando com a Extra Limpo!
+                            Limpeza de Estofados Profissional em Aracaju
                         </h1>
                         <p class="text-lg sm:text-xl text-gray-600 mb-8 text-center lg:text-left">
-                            Sofás, cadeiras, poltronas, tapetes e bancos de carro limpos com qualidade e eficiência.
+                            Higienização especializada para sofás, cadeiras, poltronas, colchões e bancos de carro com qualidade e eficiência. Atendemos toda Aracaju.
                         </p>
                         <div class="text-center lg:text-left">
                             <a href="#contato"
@@ -116,35 +205,36 @@
                         </div>
                     </div>
                     <div class="mb-12 lg:mb-0 animate-fadeIn" style="animation-delay: 0.2s;">
-                        <img src="https://creatie.ai/ai/api/search-image?query=A professional before and after comparison of a sofa cleaning service, showing a dirty beige sofa on the left and the same sofa perfectly clean on the right, with a simple white background&width=600&height=400&orientation=landscape&flag=7b097254-fdfc-45e3-84a0-bbf4e6f913a7&flag=64c58678-2227-49e1-acdc-856915313c08&flag=cd7a91cb-667e-4574-bc25-3c9e1f9fdc8a&flag=7693a879-d33c-4603-aa73-e1c84ea505dc&flag=3a7dc18a-16be-46c6-9fea-85bbe0d47191&flag=a052b80e-49c4-4a49-b538-1b9bd5d796b2&flag=a7922a82-18be-4a49-8c45-2b4d507d6068&flag=01a46ff0-a1df-4455-ac22-21af9450ab3d&flag=cdd43ec1-d406-48be-90ed-fd6d7ca7bdf9&flag=ad55af53-2545-4190-b6a5-3f569bd36179&flag=df645971-083c-45b7-a2af-78dd1c53729b&flag=63a1b5d7-0eb8-49ef-b933-c00dc8c92c0c&flag=9bb4678b-aecc-4eb7-987b-c195efcd1ac7&flag=7edfe27d-bf95-4d61-b533-e5da58f76a8a&flag=1677c23c-3d61-412b-861e-7a79c09dd3b7&flag=45107aad-7108-4eaf-bd6b-9cdd30411112&flag=878b8900-d39a-4c31-99ce-0be0160cdb88&flag=502dfb92-1ff9-4a23-871a-4ae6bee66cb6&flag=fb575204-c778-4af2-9370-b650b359f3fd&flag=1232f162-4701-4e5b-b5b2-0e5f9d354ab7&flag=cc919739-8ddb-49da-a6d8-07942393ea3d&flag=c3937488-b039-4ca2-b24f-0cee74df1d8e&flag=1328c798-3b79-4141-bc5c-fec4e121693e"
-                            alt="Antes e Depois" class="rounded-xl shadow-xl w-full object-cover h-auto" />
+                        <img src="assets/sofa.jpeg"
+                            alt="Antes e Depois da Limpeza de Sofá em Aracaju - Extra Limpo" class="rounded-xl shadow-xl w-full object-cover h-auto" />
                     </div>
                 </div>
             </div>
         </section>
         <section class="py-16 bg-white section-padding" id="servicos">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Nossos Serviços</h2>
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-4">Serviços de Limpeza de Estofados em Aracaju</h2>
+                <p class="text-lg text-center text-gray-600 mb-12 max-w-3xl mx-auto">Oferecemos serviços especializados de higienização e limpeza profunda para diversos tipos de estofados. Usando produtos de alta qualidade e técnicas avançadas para resultados impecáveis.</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
                         <i class="fas fa-couch text-custom text-3xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Limpeza de Sofás</h3>
-                        <p class="text-gray-600">Removemos manchas e sujeiras profundas com técnicas profissionais.</p>
+                        <p class="text-gray-600">Removemos manchas, ácaros e sujeiras profundas com técnicas profissionais. Ideal para sofás de tecido, suede, couro e outros materiais.</p>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
                         <i class="fas fa-chair text-custom text-3xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Limpeza de Cadeiras</h3>
-                        <p class="text-gray-600">Tratamento profissional para renovar suas cadeiras.</p>
+                        <p class="text-gray-600">Tratamento profissional para renovar suas cadeiras de escritório, jantar ou decorativas. Eliminamos manchas e odores indesejados.</p>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
                         <i class="fas fa-car text-custom text-3xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Bancos de Carro</h3>
-                        <p class="text-gray-600">Higienização completa e segura para seu veículo.</p>
+                        <p class="text-gray-600">Higienização completa e segura para os bancos do seu veículo. Removemos manchas e odores com equipamentos especializados.</p>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
                         <i class="fas fa-chair text-custom text-3xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Limpeza de Poltronas</h3>
-                        <p class="text-gray-600">Restauração e limpeza profunda de poltronas.</p>
+                        <p class="text-gray-600">Restauração e limpeza profunda de poltronas e reclináveis. Devolvemos o aspecto de novo para seu móvel.</p>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
                         <i class="fas fa-bed text-custom text-3xl mb-4"></i>
@@ -165,6 +255,29 @@
                         <i class="fas fa-baby text-custom text-3xl mb-4"></i>
                         <h3 class="text-xl font-semibold mb-2">Bebê Conforto</h3>
                         <p class="text-gray-600">Higienização segura para bebê conforto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-16 bg-gray-100 section-padding">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-4">Por que escolher a Extra Limpo?</h2>
+                <p class="text-lg text-center text-gray-600 mb-12 max-w-3xl mx-auto">Somos especialistas em limpeza de estofados em Aracaju, oferecendo um serviço que combina qualidade, eficiência e preço justo.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
+                        <i class="fas fa-certificate text-custom text-3xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Profissionais Qualificados</h3>
+                        <p class="text-gray-600">Nossa equipe é treinada nas mais avançadas técnicas de higienização de estofados, garantindo resultados superiores.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
+                        <i class="fas fa-leaf text-custom text-3xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Produtos Ecológicos</h3>
+                        <p class="text-gray-600">Utilizamos produtos biodegradáveis e seguros para sua família, pets e para o meio ambiente.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
+                        <i class="fas fa-shield-alt text-custom text-3xl mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Garantia de Satisfação</h3>
+                        <p class="text-gray-600">Oferecemos garantia nos nossos serviços. Se você não ficar satisfeito, refazemos o trabalho sem custo adicional.</p>
                     </div>
                 </div>
             </div>
@@ -192,12 +305,12 @@
         </section>
         <section class="py-16 bg-gray-50 section-padding" id="depoimentos">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">O Que Nossos Clientes Dizem</h2>
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">O Que Nossos Clientes em Aracaju Dizem</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 carousel-container relative">
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
                         <div class="flex items-center mb-4">
-                            <img src="https://creatie.ai/ai/api/search-image?query=Professional headshot of a middle-aged Brazilian woman with a warm smile, business casual attire, against a neutral background&width=60&height=60&orientation=squarish&flag=c7a52000-433f-4e02-b00d-4ffce9d14dc2&flag=d167e422-7f9a-40ed-bbf8-328c7507ff4c&flag=fd72dfdc-8389-4b42-9870-10afa6fc3bb7&flag=3d150d46-0a8c-477f-adf1-b3acd6036709&flag=6361be98-8e95-414d-b4fd-ab4b7baa17e4&flag=48a53c1c-f24d-4c2f-8030-672d2f664d4e&flag=6701e88e-f32e-447a-83c9-b398d850e377&flag=eed8da63-0f54-4a81-b0d9-cee40d56cba1&flag=f6cdf5fb-15df-41d2-b8bf-0132f83e63f0&flag=7e172379-7f44-4165-8cc6-945b8f035764&flag=4b81fc89-1b26-460c-9919-b8fd00ca6033&flag=7dafa7fb-b27c-4971-8ea8-74244ce00b3c&flag=dc3f72c1-e83f-44d5-a5e4-80a00b4e1afb&flag=afc4d05c-452d-4161-98eb-31f216f49ff2&flag=789ec5da-7bc0-4ac9-a221-633060b3f3fc&flag=b2286e9d-4a76-4e5f-bf7f-b6318e02f9e1&flag=19309aa5-b832-4763-a61b-73aceeb259cd&flag=249cc3e1-925b-436e-9baf-9c9c35d033b9&flag=97ae8355-1055-4612-8f97-10eca924e3cb&flag=b6a1e5fc-3416-4dd5-a9dc-4af8e3cb8158&flag=fb015b89-6547-48f6-9af4-269aed01df7e&flag=a149eea5-c628-45fc-b8f0-b0543d7308a0&flag=aea5aeb7-4148-4ca8-83b2-b24ca4ad3161"
-                                alt="Cliente" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
+                            <img src="assets/joyce.webp"
+                                alt="Cliente Maria Silva - Depoimento sobre limpeza de sofá em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
                             <div>
                                 <h4 class="font-semibold">Maria Silva</h4>
                                 <div class="text-custom">
@@ -209,13 +322,13 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="text-gray-600">"Meu sofá parecia novo depois do serviço. Super recomendo! 👏"
+                        <p class="text-gray-600">"Meu sofá parecia novo depois do serviço de limpeza da Extra Limpo. Atendimento pontual e profissional. Super recomendo para quem busca limpeza de estofados em Aracaju! 👏"
                             <span class="text-xs text-gray-400 block mt-2">via WhatsApp</span></p>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
                         <div class="flex items-center mb-4">
-                            <img src="https://creatie.ai/ai/api/search-image?query=Professional headshot of a middle-aged Brazilian man with a confident smile, business casual attire, against a neutral background&width=60&height=60&orientation=squarish&flag=741303f2-e59d-447c-a236-8df10d90f40b&flag=8e437a92-168a-493d-9a13-cf8ed126b843&flag=42a48b8c-38f0-4a85-963e-88def6a63b7d&flag=bea361f8-112b-4238-b254-5c74e0917c22&flag=aaad50a2-0399-4366-b0cd-330cc2bf6ced&flag=faff0096-bec5-4ca2-b5e9-59004aa13579&flag=7cc51ee4-f3ec-4743-95d8-75313c415e66&flag=a322f84b-9a5d-4fc8-9e07-99f23b40b052&flag=72c75416-8614-44f6-880a-4135f13b1160&flag=fda8ebd0-9d85-4b26-aad3-066b3f6cd43a&flag=e0aeb504-5b21-4af5-9222-deb80e8fe2a4&flag=29f70eca-1030-40cc-ba56-ae4495004c2d&flag=53931251-7b04-45e5-bc8d-146795a3e0d0&flag=38a7726f-ee34-48ae-acd0-9f06bce7a5b4&flag=d5e54aab-2f78-47e6-91a9-d1ea2b21ad22&flag=9134ec52-d0cd-4558-913f-700556908b15&flag=93603153-627e-4497-adb9-15b884d8aebd&flag=29781b3d-837a-4ba7-a1b7-81df5fc37367&flag=20dd0507-63cf-4155-9785-2927fa80474b&flag=d58ec60c-4b5f-49a3-af1b-72b9e9da2e5d&flag=8052d366-59a1-4b69-9a41-ce9724f1a7d0&flag=ffa88473-315a-4314-98b3-9741dd7f5a16&flag=4e51ad09-8f8d-44ea-a77c-36ae4c578f2c"
-                                alt="Cliente" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
+                            <img src="assets/diogo.webp"
+                                alt="Cliente João Santos - Depoimento sobre limpeza de carro em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
                             <div>
                                 <h4 class="font-semibold">João Santos</h4>
                                 <div class="text-custom">
@@ -232,8 +345,8 @@
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
                         <div class="flex items-center mb-4"><img
-                                src="https://creatie.ai/ai/api/search-image?query=Professional headshot of a young Brazilian woman with a friendly smile&width=60&height=60&flag=68ac1fd3-3aa7-4d93-add0-a51f344c5a60&flag=bd352ceb-75db-4d0d-a3b2-052b60e14380&flag=46c9a1a9-9180-4b53-b45e-735fcd02a697&flag=e7d40afc-6f61-4a8f-8a17-e7dca69173e6&flag=4b28bb07-16f0-4f8b-9f45-87a6580f45e5&flag=ee7dd04c-5406-43c1-8cae-c2e3aa48a4e7&flag=c54731a9-225a-4164-ab13-f9d515440962&flag=48cb4eb4-726d-47e6-8668-0f2f7ce02372&flag=8292d57f-58b0-4cf3-a4b1-4b88f34eb24d&flag=f9c53b5b-02a1-442f-ad20-44105ac8ff5b"
-                                alt="Cliente" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
+                                src="assets/edu.webp"
+                                alt="Cliente Ana Beatriz - Depoimento sobre limpeza de poltrona em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
                             <div>
                                 <h4 class="font-semibold">Ana Beatriz</h4>
                                 <div class="text-custom"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
@@ -246,8 +359,8 @@
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
                         <div class="flex items-center mb-4"><img
-                                src="https://creatie.ai/ai/api/search-image?query=Professional+headshot+of+a+middle-aged+Brazilian+man&flag=ee70b965-bfac-40b8-9c27-e13408c78bb0&flag=3068c538-d31d-4b91-ae63-62db4c75425d&flag=689bedb6-9d65-4ab1-9272-97087fc3332a&flag=c67d8141-a3e8-4bff-a533-8c3d1ff75cb3&flag=d24df59b-5760-4113-948e-dfb7aaa84b10&flag=20e38d61-642d-4dcf-96fc-869da741a426&flag=fb56c5c6-d611-42a7-83c7-f81a4061d0b4&flag=f8f9f14e-7202-480c-9227-0bfb48414a68&flag=7f3e241e-e16e-445c-932f-a32e7dba88e8"
-                                alt="Cliente" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
+                                src="assets/michael.webp"
+                                alt="Cliente Pedro Lima - Depoimento sobre limpeza de sofá em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
                             <div>
                                 <h4 class="font-semibold">Pedro Lima</h4>
                                 <div class="text-custom"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
@@ -260,8 +373,8 @@
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
                         <div class="flex items-center mb-4"><img
-                                src="https://creatie.ai/ai/api/search-image?query=Professional+headshot+of+a+young+Brazilian+woman&flag=7fc4cd8b-a074-41aa-a5e3-f52162628a55&flag=06dac195-f134-44f0-9a21-2e03b1497400&flag=f30a650f-bcc9-427d-b91e-2ecc05c13e58&flag=e145112a-7c0a-429e-a6d0-77ac6b632e52&flag=d9f19304-cf5b-4a8c-b314-14f9a53ad02e&flag=6b57dcbd-c0f5-4f5d-84f9-b33f5599323a&flag=d924ac74-a6fe-4b2d-ab2a-8c35a0fff55f&flag=2037f0fd-e283-49d4-b841-886c567c6c9b&flag=85a0b7a2-eb4d-4281-be2e-08750a437215"
-                                alt="Cliente" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
+                                src="assets/clewerton.webp"
+                                alt="Cliente Carla Oliveira - Depoimento sobre higienização de cama box em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
                             <div>
                                 <h4 class="font-semibold">Carla Oliveira</h4>
                                 <div class="text-custom"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
@@ -274,8 +387,8 @@
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 card-hover">
                         <div class="flex items-center mb-4"><img
-                                src="https://creatie.ai/ai/api/search-image?query=Professional+headshot+of+a+middle-aged+Brazilian+man&flag=ee70b965-bfac-40b8-9c27-e13408c78bb0&flag=8b76bfc1-3975-4116-a584-b47a589ad637&flag=41f56105-e503-453c-89ba-9819bdafd61e&flag=43a6b84c-46a7-4ff7-b366-46aa79ff06d1&flag=83c4d7a7-aefe-4375-b1ae-72c74ea60fa8&flag=c7e7eb2b-142e-423f-a960-06d5ebf78828&flag=acf73340-c8e0-4c08-979a-f196ad2de121&flag=65b5aaaf-7b3f-4aa2-a3ec-df7a98aa99f7&flag=0156ea4a-013f-40d8-a9a8-e6f7bb7624d0"
-                                alt="Cliente" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
+                                src="assets/Anibal.webp"
+                                alt="Cliente Roberto Costa - Depoimento sobre higienização de colchão em Aracaju" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-custom" />
                             <div>
                                 <h4 class="font-semibold">Roberto Costa</h4>
                                 <div class="text-custom"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
@@ -289,22 +402,57 @@
                     </div>
                 </div>
                 <div class="flex justify-center mt-8 space-x-4">
-                    <button id="prev-btn" class="bg-custom text-white px-5 py-3 rounded-lg hover:bg-custom/90 transition-colors">
+                    <button id="prev-btn" class="bg-custom text-white px-5 py-3 rounded-lg hover:bg-custom/90 transition-colors" aria-label="Depoimento anterior">
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <button id="next-btn" class="bg-custom text-white px-5 py-3 rounded-lg hover:bg-custom/90 transition-colors">
+                    <button id="next-btn" class="bg-custom text-white px-5 py-3 rounded-lg hover:bg-custom/90 transition-colors" aria-label="Próximo depoimento">
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
             </div>
         </section>
+        <section class="py-16 bg-white section-padding">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">Área de Atendimento</h2>
+                <p class="text-lg text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                    Atendemos em toda cidade de Aracaju e região metropolitana, incluindo:
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="font-medium">Atalaia</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="font-medium">Coroa do Meio</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="font-medium">Jardins</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="font-medium">Grageru</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="font-medium">13 de Julho</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="font-medium">Farolândia</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="font-medium">Salgado Filho</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="font-medium">Zona de Expansão</p>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section id="contato" class="py-16 bg-custom section-padding">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl font-bold text-white mb-6">Agende Agora Mesmo!</h2>
+                <h2 class="text-3xl font-bold text-white mb-6">Agende Sua Limpeza de Estofados em Aracaju</h2>
+                <p class="text-xl text-white mb-4">Entre em contato para um orçamento gratuito</p>
                 <p class="text-2xl font-semibold text-white mb-8">+55 79 99105-9924</p>
                 <a href="https://wa.me/5579991059924"
                     class="inline-block bg-white text-custom px-8 py-4 !rounded-button text-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 hover:shadow-lg animate-pulse">
-                    <i class="fab fa-whatsapp mr-2 text-xl"></i>Entre em Contato
+                    <i class="fab fa-whatsapp mr-2 text-xl"></i>Solicitar Orçamento no WhatsApp
                 </a>
             </div>
         </section>
@@ -430,15 +578,16 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Localização</h3>
-                    <p>Atendemos em toda Aracaju</p>
+                    <p>Atendemos em toda Aracaju e região metropolitana</p>
+                    <p class="mt-2">Sergipe - Brasil</p>
                 </div>
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Redes Sociais</h3>
                     <div class="flex justify-center md:justify-start space-x-4">
-                        <a href="#" class="text-white hover:text-custom transition-colors">
+                        <a href="#" class="text-white hover:text-custom transition-colors" aria-label="Instagram">
                             <i class="fab fa-instagram text-2xl"></i>
                         </a>
-                        <a href="https://wa.me/5579991059924" class="text-white hover:text-custom transition-colors">
+                        <a href="https://wa.me/5579991059924" class="text-white hover:text-custom transition-colors" aria-label="WhatsApp">
                             <i class="fab fa-whatsapp text-2xl"></i>
                         </a>
                     </div>
@@ -446,13 +595,14 @@
                 <div>
                     <p class="text-gray-400">© 2025 Extra Limpo. Todos os direitos reservados.<br />CNPJ:
                         47.258.117/0001-33</p>
+                    <p class="text-sm text-gray-500 mt-2">Limpeza de estofados em Aracaju - Higienização profissional de sofás, poltronas e colchões</p>
                 </div>
             </div>
         </div>
     </footer>
     <a href="https://wa.me/5579991059924"
         class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bg-[#25D366] text-white p-3 sm:p-4 rounded-full shadow-lg hover:bg-[#1da851] transition-all duration-300 transform hover:scale-110 z-50 animate-pulse"
-        style="width: 70px; height: 70px; display: flex; align-items: center; justify-content: center;">
+        style="width: 70px; height: 70px; display: flex; align-items: center; justify-content: center;" aria-label="Contato WhatsApp">
         <i class="fab fa-whatsapp text-4xl"></i>
     </a>
 </body>
